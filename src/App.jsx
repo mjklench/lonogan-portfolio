@@ -19,68 +19,108 @@ export default function App() {
       {/* Navbar */}
       <nav className="fixed top-0 left-0 w-full z-50 bg-[#0f172acc] backdrop-blur-md border-b border-white/10 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        <div className="flex items-center text-xl font-bold tracking-wide text-[#A4AA7C]">
-          <img
-            src="/mjkl-logo-2025.png"
-            alt="Melglenn logo"
-            className="h-8 w-8 mr-2"
-          />
-          <span>mel.dev</span>
-        </div>
-          <ul className="flex gap-6 text-sm text-gray-300 font-medium">
+          {/* Logo */}
+          <div className="flex items-center text-xl font-bold tracking-wide text-[#A4AA7C]">
+            <img
+              src="/mjkl-logo-2025.png"
+              alt="Melglenn logo"
+              className="h-8 w-8 mr-2"
+            />
+            <span>mel.dev</span>
+          </div>
+
+          {/* Desktop links */}
+          <ul className="hidden md:flex gap-6 text-sm text-gray-300 font-medium">
             <li>
-              <a
-                href="#hero"
-                className="hover:text-[#065F89] transition-colors duration-200"
-              >
+              <a href="#hero" className="hover:text-[#065F89] transition-colors duration-200">
                 Hi <span role="img" aria-label="waving hand">👋</span>
               </a>
             </li>
             <li>
-              <a
-                href="#about"
-                className="hover:text-[#065F89] transition-colors duration-200"
-              >
+              <a href="#about" className="hover:text-[#065F89] transition-colors duration-200">
                 About <span role="img" aria-label="information">ℹ️</span>
               </a>
             </li>
             <li>
-              <a
-                href="#projects"
-                className="hover:text-[#065F89] transition-colors duration-200"
-              >
+              <a href="#projects" className="hover:text-[#065F89] transition-colors duration-200">
                 Projects <span role="img" aria-label="rocket">🚀</span>
               </a>
             </li>
             <li>
-              <a
-                href="#contact"
-                className="hover:text-[#065F89] transition-colors duration-200"
-              >
+              <a href="#contact" className="hover:text-[#065F89] transition-colors duration-200">
                 Contact <span role="img" aria-label="envelope">✉️</span>
               </a>
             </li>
           </ul>
 
-          {/* Theme toggle */}
-          <button
-            onClick={() => setDarkMode(dm => !dm)}
-            className="ml-4 p-2 rounded hover:bg-gray-700/50 transition-colors"
-            aria-label="Toggle light/dark mode"
-          >
-            {darkMode ? (
-              /* Sun icon (for light) */
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 4.354a7.646 7.646 0 100 15.292 7.646 7.646 0 000-15.292zM12 2v2.5M12 19.5V22M4.354 12H2m19.5 0h-2.5M5.636 5.636l-1.768-1.768m15.364 15.364l-1.768-1.768M18.364 5.636l1.768-1.768M2.596 19.364l1.768-1.768"/>
-              </svg>
-            ) : (
-              /* Moon icon (for dark) */
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-200" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
-              </svg>
-            )}
-          </button>
+          {/* Right side buttons */}
+          <div className="flex items-center">
+            {/* Mobile menu toggle */}
+            <button
+              onClick={() => setMobileOpen(o => !o)}
+              className="md:hidden p-2 rounded hover:bg-gray-700/50 transition-colors"
+              aria-label="Toggle menu"
+            >
+              {mobileOpen ? (
+                /* X icon */
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-200" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              ) : (
+                /* Hamburger icon */
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+              )}
+            </button>
+
+            {/* Theme toggle */}
+            <button
+              onClick={() => setDarkMode(dm => !dm)}
+              className="ml-2 p-2 rounded hover:bg-gray-700/50 transition-colors"
+              aria-label="Toggle light/dark mode"
+            >
+              {darkMode ? (
+                /* Sun icon */
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 4.354a7.646 7.646 0 100 15.292 7.646 7.646 0 000-15.292zM12 2v2.5M12 19.5V22M4.354 12H2m19.5 0h-2.5M5.636 5.636l-1.768-1.768m15.364 15.364l-1.768-1.768M18.364 5.636l1.768-1.768M2.596 19.364l1.768-1.768"/>
+                </svg>
+              ) : (
+                /* Moon icon */
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-200" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+                </svg>
+              )}
+            </button>
+          </div>
         </div>
+
+        {/* Mobile menu (dropdown) */}
+        {mobileOpen && (
+          <div className="md:hidden bg-[#0f172acc] backdrop-blur-md border-t border-white/10">
+            <ul className="flex flex-col gap-4 px-6 py-4 text-gray-300">
+              {['hero','about','projects','contact'].map((id, idx) => {
+                const labels = [
+                  <>Hi <span role="img" aria-label="waving">👋</span></>,
+                  <>About <span role="img" aria-label="info">ℹ️</span></>,
+                  <>Projects <span role="img" aria-label="rocket">🚀</span></>,
+                  <>Contact <span role="img" aria-label="mail">✉️</span></>,
+                ]
+                return (
+                  <li key={id}>
+                    <a
+                      href={`#${id}`}
+                      className="block py-2 hover:text-[#065F89] transition-colors duration-200"
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      {labels[idx]}
+                    </a>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
+        )}
       </nav>
 
       <Hero darkMode={darkMode} />
