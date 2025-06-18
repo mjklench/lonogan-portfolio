@@ -2,9 +2,13 @@ import { useState, useEffect } from 'react';
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(() => {
-    const val = localStorage.getItem('darkMode');
-    return val === null ? true : JSON.parse(val);
-  });
+    try {
+      const v = localStorage.getItem('darkMode')
+      return v === null ? true : JSON.parse(v)
+    } catch {
+      return true
+    }
+  })
 
   useEffect(() => {
     localStorage.setItem('darkMode', JSON.stringify(darkMode));
@@ -28,13 +32,13 @@ export default function App() {
               alt="Melglenn logo"
               className="h-8 w-8 mr-2"
             />
-            <span>mel.dev</span>
+            <span>&lt;mel-dev&gt;</span>
           </div>
 
           {/* Desktop links */}
           <ul className="hidden md:flex gap-6 text-sm text-gray-300 font-medium">
             <li>
-              <a href="#hero" className="hover:text-[#065F89] transition-colors duration-200">
+              <a href="#hello" className="hover:text-[#065F89] transition-colors duration-200">
                 Hi <span role="img" aria-label="waving hand">👋</span>
               </a>
             </li>
@@ -61,6 +65,7 @@ export default function App() {
             <button
               onClick={() => setMobileOpen(o => !o)}
               className="md:hidden p-2 rounded hover:bg-gray-700/50 transition-colors"
+              aria-expanded={mobileOpen}
               aria-label="Toggle menu"
             >
               {mobileOpen ? (
@@ -80,6 +85,7 @@ export default function App() {
             <button
               onClick={() => setDarkMode(dm => !dm)}
               className="ml-2 p-2 rounded hover:bg-gray-700/50 transition-colors"
+              aria-pressed={darkMode}
               aria-label="Toggle light/dark mode"
             >
               {darkMode ? (
@@ -151,30 +157,49 @@ export default function App() {
 function Hero({ darkMode }) {
   const bg = darkMode ? 'bg-[#0f172a] text-white' : 'bg-white text-gray-900';
   const hiColor = darkMode ? 'text-white' : 'text-[#263350]';
+  const btnBg = darkMode
+    ? 'bg-[#065F89] hover:bg-[#05486b] text-white'
+    : 'bg-[#065F89]/80 hover:bg-[#065F89] text-white';
+
   return (
     <section
-      id="hero"
-      className={`${bg} min-h-screen flex flex-col justify-center items-center px-6 pt-24 pb-16 text-center transition-colors duration-300`}
+      id="hello"
+      className={`${bg} min-h-screen flex items-center justify-center transition-colors duration-300`}
     >
-      <h1 className="text-5xl sm:text-6xl font-extrabold mb-4">
-        <span className={hiColor}>Hi, I’m</span>{' '}
-        <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#065F89] to-[#A4AA7C]">
-          Melglenn James
-        </span>
-      </h1>
-      <p className={`${darkMode ? 'text-gray-400' : 'text-gray-600'} max-w-xl text-lg mb-6`}>
-        Full-stack developer crafting sleek, scalable web apps with React, Tailwind, Laravel & MySQL.
-      </p>
-      <a
-        href="#projects"
-        className={`px-6 py-3 mt-4 rounded-full transition duration-300
-          ${darkMode
-            ? 'bg-[#065F89] hover:bg-[#05486b] text-white'
-            : 'bg-[#065F89]/80 hover:bg-[#065F89] text-white'}
-        `}
-      >
-        View My Work
-      </a>
+      <div className="max-w-3xl mx-auto text-center px-6 pt-24 pb-16 space-y-8">
+        {/* Blob-shaped Photo */}
+        <div className="w-72 h-72 mx-auto">
+          <img
+            src="/mjkl-picture-2023.png"
+            alt="Melglenn James"
+            className="
+              w-full h-full object-cover
+              rounded-[42%_62%_32%_42%] 
+              border-4 border-[#065F89] 
+              shadow-lg
+            "
+          />
+        </div>
+
+        {/* Intro */}
+        <h1 className="text-5xl sm:text-6xl font-extrabold">
+          <span className={hiColor}>Hi, I’m</span>{' '}
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#065F89] to-[#A4AA7C]">
+            Melglenn James
+          </span>
+        </h1>
+
+        <p className={`${darkMode ? 'text-gray-400' : 'text-gray-600'} text-lg`}>
+          Full-stack developer crafting sleek, scalable web apps with React, Tailwind, Laravel & MySQL.
+        </p>
+
+        <a
+          href="#projects"
+          className={`inline-block px-6 py-3 rounded-full transition duration-300 ${btnBg}`}
+        >
+          View My Work
+        </a>
+      </div>
     </section>
   );
 }
@@ -201,28 +226,8 @@ function About({ darkMode }) {
 
 // Projects Section
 function ProjectsSection({ darkMode }) {
-  const allTechs = ['PHP','CSS','MySQL','JavaScript','React','Tailwind'];
+  const allTechs = ['PHP','CSS','MySQL','JavaScript','React','Tailwind','Node.js','Socket.io'];
   const [selected, setSelected] = useState([]);
-  const [view, setView] = useState('grid');
-
-  const projects = [
-    {
-      id: 1, title: 'Project A',
-      desc: 'A CRUD app built with PHP & MySQL.',
-      img: 'https://via.placeholder.com/400x250',
-      github: 'https://github.com/username/project-a',
-      live:   'https://example.com/a',
-      tech: ['PHP','MySQL']
-    },
-    {
-      id: 2, title: 'Project B',
-      desc: 'A single-page React app styled with Tailwind.',
-      img: 'https://via.placeholder.com/400x250',
-      github: 'https://github.com/username/project-b',
-      live:   null,
-      tech: ['React','Tailwind','JavaScript']
-    },
-  ];
 
   const toggleTech = tech => {
     setSelected(sel =>
@@ -231,22 +236,26 @@ function ProjectsSection({ darkMode }) {
         : [...sel, tech]
     );
   };
+  const resetFilters = () => setSelected([]);
 
-  const shown = selected.length === 0
-    ? projects
-    : projects.filter(p => p.tech.some(t => selected.includes(t)));
-
-  const sectionBg = darkMode ? 'bg-[#0f172a]' : 'bg-white';
+  const sectionBg    = darkMode ? 'bg-[#0f172a]' : 'bg-white';
   const headingColor = darkMode ? 'text-[#A4AA7C]' : 'text-[#065F89]';
+  const cardBg       = darkMode ? 'bg-gray-800 text-white' : 'bg-gray-100 text-gray-900';
+  const descColor    = darkMode ? 'text-gray-400' : 'text-gray-700';
+  const tagBg        = darkMode
+    ? 'bg-[#A4AA7C]/50 text-white'
+    : 'bg-[#A4AA7C]/50 text-gray-900';
+  const linkOff      = darkMode
+    ? 'text-gray-300 hover:text-white'
+    : 'text-gray-700 hover:text-gray-900';
   const btnOff = darkMode
     ? 'bg-gray-800 text-gray-300 hover:bg-gray-700'
     : 'bg-gray-200 text-gray-700 hover:bg-gray-300';
-  const btnOn  = 'bg-[#065F89] text-white';
-  const cardBg = darkMode ? 'bg-gray-800 text-white' : 'bg-gray-100 text-gray-900';
-  const descColor = darkMode ? 'text-gray-400' : 'text-gray-700';
-  const tagBg = `${darkMode ? 'bg-[#A4AA7C]/50 text-white' : 'bg-[#A4AA7C]/50 text-gray-900'}`;
-  const linkOff = darkMode ? 'text-gray-300 hover:text-white' : 'text-gray-700 hover:text-gray-900';
-  const viewBtnOff = darkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-300';
+  const btnOn = 'bg-[#065F89] text-white';
+
+  // helper to check if a project should display
+  const isVisible = techs =>
+    selected.length === 0 || techs.some(t => selected.includes(t));
 
   return (
     <section
@@ -254,14 +263,12 @@ function ProjectsSection({ darkMode }) {
       className={`${sectionBg} py-24 px-6 transition-colors duration-300`}
     >
       <div className="max-w-7xl mx-auto">
-        <h2
-          className={`text-3xl sm:text-4xl font-bold mb-8 text-center ${headingColor}`}
-        >
+        <h2 className={`text-3xl sm:text-4xl font-bold mb-6 text-center ${headingColor}`}>
           My Projects
         </h2>
 
         {/* Tech filters */}
-        <div className="flex flex-wrap gap-2 justify-center mb-6">
+        <div className="flex flex-wrap gap-2 justify-center mb-8">
           {allTechs.map(tech => {
             const isOn = selected.includes(tech);
             return (
@@ -277,7 +284,7 @@ function ProjectsSection({ darkMode }) {
             );
           })}
           <button
-            onClick={() => setSelected([])}
+            onClick={resetFilters}
             className={`ml-4 px-3 py-1 rounded-full text-sm transition ${
               darkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-300'
             }`}
@@ -286,152 +293,201 @@ function ProjectsSection({ darkMode }) {
           </button>
         </div>
 
-        {/* View toggle */}
-        <div className="flex justify-end mb-4 space-x-2">
-          <button
-            onClick={() => setView('grid')}
-            className={`p-2 rounded ${
-              view === 'grid' ? btnOn : viewBtnOff
-            }`}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M4 4h6v6H4V4zm0 8h6v6H4v-6zm8-8h6v6h-6V4zm0 8h6v6h-6v-6z"/>
-            </svg>
-          </button>
-          <button
-            onClick={() => setView('list')}
-            className={`p-2 rounded ${
-              view === 'list' ? btnOn : viewBtnOff
-            }`}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M4 6h16v2H4V6zm0 5h16v2H4v-2zm0 5h16v2H4v-2z"/>
-            </svg>
-          </button>
-        </div>
-
-        {/* Grid or List */}
-        {view === 'grid' ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {shown.map(p => (
-              <div key={p.id} className={`${cardBg} rounded-lg overflow-hidden shadow-lg`}>
-                <img src={p.img} alt={p.title} className="w-full h-40 object-cover" />
-                <div className="p-4">
-                  <h3 className="text-xl font-semibold mb-2">{p.title}</h3>
-                  <p className={`${descColor} text-sm mb-3`}>{p.desc}</p>
-                  <div className="flex flex-wrap gap-2 mb-3">
-                    {p.tech.map(t => (
-                      <span key={t} className={`px-2 py-1 ${tagBg} text-xs rounded-full`}>
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="flex items-center gap-4 text-sm">
-                    {p.github && (
-                      <a
-                        href={p.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`flex items-center ${linkOff}`}
-                      >
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" fill="currentColor" viewBox="0 0 24 24">
-                          <path
-                            fillRule="evenodd"
-                            clipRule="evenodd"
-                            d="M12 0C5.371 0 0 5.371 0 12c0 5.303 3.438 9.8 8.205 11.387.6.113.82-.26.82-.577
-                            0-.285-.011-1.041-.017-2.044-3.338.726-4.042-1.61-4.042-1.61-.546-1.387
-                            -1.333-1.756-1.333-1.756-1.09-.745.083-.729.083-.729 1.205.084 
-                            1.84 1.237 1.84 1.237 1.07 1.835 2.809 1.305 3.495.997.108-.774.418
-                            -1.305.76-1.605-2.665-.303-5.466-1.333-5.466-5.932 0-1.31.468
-                            -2.381 1.235-3.221-.124-.303-.536-1.523.117-3.176 0 0 1.008
-                            -.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005
-                            2.047.138 3.006.404 2.289-1.553 3.295-1.23 3.295-1.23.656
-                            1.653.244 2.873.12 3.176.77.84 1.232 1.911 1.232 
-                            3.221 0 4.61-2.807 5.625-5.48 5.921.43.372.823 
-                            1.102.823 2.222 0 1.606-.015 2.901-.015 
-                            3.293 0 .319.216.694.825.576C20.565 21.796 24 
-                            17.298 24 12 24 5.371 18.627 0 12 0z"
-                          />
-                        </svg>
-                        GitHub
-                      </a>
-                    )}
-                    {p.live && (
-                      <a
-                        href={p.live}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-[#065F89] hover:underline"
-                      >
-                        Live Demo
-                      </a>
-                    )}
-                  </div>
+        {/* Projects grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Project A */}
+          {isVisible(['PHP','MySQL']) && (
+            <div className={`${cardBg} rounded-lg overflow-hidden shadow-lg`}>
+              <img
+                src="https://via.placeholder.com/400x250"
+                alt="Project A"
+                className="w-full h-40 object-cover"
+                loading="lazy"
+              />
+              <div className="p-4">
+                <h3 className="text-xl font-semibold mb-2">Project A</h3>
+                <p className={`${descColor} text-sm mb-3`}>
+                  A CRUD app built with PHP & MySQL.
+                </p>
+                <div className="flex flex-wrap gap-2 mb-3">
+                  <span className={`px-2 py-1 ${tagBg} text-xs rounded-full`}>PHP</span>
+                  <span className={`px-2 py-1 ${tagBg} text-xs rounded-full`}>MySQL</span>
+                </div>
+                <div className="flex items-center gap-4 text-sm">
+                  <a
+                    href="https://github.com/username/project-a"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`flex items-center ${linkOff}`}
+                  >
+                    {/* GitHub Icon */}
+                    <svg
+                      className="h-5 w-5 mr-1"
+                      viewBox="0 0 16 16"
+                      fill="currentColor"
+                      xmlns="http://www.w3.org/2000/svg"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 
+                          6.53 5.47 7.59.4.07.55-.17.55-.38 
+                          0-.19-.007-.82-.01-1.49-2.01.37-2.43-.49
+                          -2.59-.94-.09-.23-.48-.94-.82-1.13-.28
+                          -.15-.68-.52-.01-.53.63-.01 1.08.58
+                          1.23.82.72 1.21 1.87.87 2.33.66.07
+                          -.52.28-.87.51-1.07-1.78-.2-3.64-.89
+                          -3.64-3.95 0-.87.31-1.59.82-2.15
+                          -.083-.2-.36-1.02.078-2.12 0 0 .67
+                          -.21 2.2.82.64-.18 1.32-.27 2-.27.68
+                          0 1.36.09 2 .27 1.53-1.04 2.2-.82
+                          2.2-.82.44 1.1.16 1.92.08 2.12.51.56
+                          .82 1.27.82 2.15 0 3.07-1.87 3.75
+                          -3.65 3.95.29.25.54.73.54 1.48 
+                          0 1.07-.01 1.93-.01 2.2 0 .21.15.46
+                          .55.38A8.013 8.013 0 0016 8c0-4.42
+                          -3.58-8-8-8z"
+                      />
+                    </svg>
+                    GitHub
+                  </a>
+                  <a
+                    href="https://example.com/a"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#065F89] hover:underline"
+                  >
+                    Live Demo
+                  </a>
                 </div>
               </div>
-            ))}
-          </div>
-        ) : (
-          <ul className="space-y-6">
-            {shown.map(p => (
-              <li key={p.id} className={`${cardBg} rounded-lg p-4 flex items-center gap-4 shadow-md`}>
-                <img src={p.img} alt={p.title} className="w-20 h-20 object-cover rounded" />
-                <div className="flex-1">
-                  <h3 className="text-lg font-semibold">{p.title}</h3>
-                  <p className={`${descColor} text-sm mb-2`}>{p.desc}</p>
-                  <div className="flex flex-wrap gap-2 mb-1">
-                    {p.tech.map(t => (
-                      <span key={t} className={`px-2 py-1 ${tagBg} text-xs rounded-full`}>
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="flex items-center gap-4 text-sm">
-                    {p.github && (
-                      <a
-                        href={p.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`flex items-center ${linkOff}`}
-                      >
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" fill="currentColor" viewBox="0 0 24 24">
-                          <path
-                            fillRule="evenodd"
-                            clipRule="evenodd"
-                            d="M12 0C5.371 0 0 5.371 0 12c0 5.303 3.438 9.8 8.205 11.387.6.113.82-.26.82-.577
-                            0-.285-.011-1.041-.017-2.044-3.338.726-4.042-1.61-4.042-1.61-.546-1.387
-                            -1.333-1.756-1.333-1.756-1.09-.745.083-.729.083-.729 1.205.084 
-                            1.84 1.237 1.84 1.237 1.07 1.835 2.809 1.305 3.495.997.108-.774.418
-                            -1.305.76-1.605-2.665-.303-5.466-1.333-5.466-5.932 0-1.31.468
-                            -2.381 1.235-3.221-.124-.303-.536-1.523.117-3.176 0 0 1.008
-                            -.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005
-                            2.047.138 3.006.404 2.289-1.553 3.295-1.23 3.295-1.23.656
-                            1.653.244 2.873.12 3.176.77.84 1.232 1.911 1.232 
-                            3.221 0 4.61-2.807 5.625-5.48 5.921.43.372.823 
-                            1.102.823 2.222 0 1.606-.015 2.901-.015 
-                            3.293 0 .319.216.694.825.576C20.565 21.796 24 
-                            17.298 24 12 24 5.371 18.627 0 12 0z"
-                          />
-                        </svg>
-                        GitHub
-                      </a>
-                    )}
-                    {p.live && (
-                      <a
-                        href={p.live}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-[#065F89] hover:underline"
-                      >
-                        Live Demo
-                      </a>
-                    )}
-                  </div>
+            </div>
+          )}
+
+          {/* Project B */}
+          {isVisible(['React','Tailwind','JavaScript']) && (
+            <div className={`${cardBg} rounded-lg overflow-hidden shadow-lg`}>
+              <img
+                src="https://via.placeholder.com/400x250"
+                alt="Project B"
+                className="w-full h-40 object-cover"
+                loading="lazy"
+              />
+              <div className="p-4">
+                <h3 className="text-xl font-semibold mb-2">Project B</h3>
+                <p className={`${descColor} text-sm mb-3`}>
+                  A single-page React app styled with Tailwind.
+                </p>
+                <div className="flex flex-wrap gap-2 mb-3">
+                  <span className={`px-2 py-1 ${tagBg} text-xs rounded-full`}>React</span>
+                  <span className={`px-2 py-1 ${tagBg} text-xs rounded-full`}>Tailwind</span>
+                  <span className={`px-2 py-1 ${tagBg} text-xs rounded-full`}>JavaScript</span>
                 </div>
-              </li>
-            ))}
-          </ul>
-        )}
+                <div className="flex items-center gap-4 text-sm">
+                  <a
+                    href="https://github.com/username/project-b"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`flex items-center ${linkOff}`}
+                  >
+                    {/* GitHub Icon */}
+                    <svg
+                      className="h-5 w-5 mr-1"
+                      viewBox="0 0 16 16"
+                      fill="currentColor"
+                      xmlns="http://www.w3.org/2000/svg"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 
+                          6.53 5.47 7.59.4.07.55-.17.55-.38 
+                          0-.19-.007-.82-.01-1.49-2.01.37-2.43-.49
+                          -2.59-.94-.09-.23-.48-.94-.82-1.13-.28
+                          -.15-.68-.52-.01-.53.63-.01 1.08.58
+                          1.23.82.72 1.21 1.87.87 2.33.66.07
+                          -.52.28-.87.51-1.07-1.78-.2-3.64-.89
+                          -3.64-3.95 0-.87.31-1.59.82-2.15
+                          -.083-.2-.36-1.02.078-2.12 0 0 .67
+                          -.21 2.2.82.64-.18 1.32-.27 2-.27.68
+                          0 1.36.09 2 .27 1.53-1.04 2.2-.82
+                          2.2-.82.44 1.1.16 1.92.08 2.12.51.56
+                          .82 1.27.82 2.15 0 3.07-1.87 3.75
+                          -3.65 3.95.29.25.54.73.54 1.48 
+                          0 1.07-.01 1.93-.01 2.2 0 .21.15.46
+                          .55.38A8.013 8.013 0 0016 8c0-4.42
+                          -3.58-8-8-8z"
+                      />
+                    </svg>
+                    GitHub
+                  </a>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Project C */}
+          {isVisible(['JavaScript','Node.js','Socket.io']) && (
+            <div className={`${cardBg} rounded-lg overflow-hidden shadow-lg`}>
+              <img
+                src="https://via.placeholder.com/400x250"
+                alt="Project C"
+                className="w-full h-40 object-cover"
+                loading="lazy"
+              />
+              <div className="p-4">
+                <h3 className="text-xl font-semibold mb-2">Project C</h3>
+                <p className={`${descColor} text-sm mb-3`}>
+                  A real-time chat app built with Socket.io & Node.js.
+                </p>
+                <div className="flex flex-wrap gap-2 mb-3">
+                  <span className={`px-2 py-1 ${tagBg} text-xs rounded-full`}>JavaScript</span>
+                  <span className={`px-2 py-1 ${tagBg} text-xs rounded-full`}>Node.js</span>
+                  <span className={`px-2 py-1 ${tagBg} text-xs rounded-full`}>Socket.io</span>
+                </div>
+                <div className="flex items-center gap-4 text-sm">
+                  <a
+                    href="https://github.com/username/project-c"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`flex items-center ${linkOff}`}
+                  >
+                    {/* GitHub Icon */}
+                    <svg
+                      className="h-5 w-5 mr-1"
+                      viewBox="0 0 16 16"
+                      fill="currentColor"
+                      xmlns="http://www.w3.org/2000/svg"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 
+                          6.53 5.47 7.59.4.07.55-.17.55-.38 
+                          0-.19-.007-.82-.01-1.49-2.01.37-2.43-.49
+                          -2.59-.94-.09-.23-.48-.94-.82-1.13-.28
+                          -.15-.68-.52-.01-.53.63-.01 1.08.58
+                          1.23.82.72 1.21 1.87.87 2.33.66.07
+                          -.52.28-.87.51-1.07-1.78-.2-3.64-.89
+                          -3.64-3.95 0-.87.31-1.59.82-2.15
+                          -.083-.2-.36-1.02.078-2.12 0 0 .67
+                          -.21 2.2.82.64-.18 1.32-.27 2-.27.68
+                          0 1.36.09 2 .27 1.53-1.04 2.2-.82
+                          2.2-.82.44 1.1.16 1.92.08 2.12.51.56
+                          .82 1.27.82 2.15 0 3.07-1.87 3.75
+                          -3.65 3.95.29.25.54.73.54 1.48 
+                          0 1.07-.01 1.93-.01 2.2 0 .21.15.46
+                          .55.38A8.013 8.013 0 0016 8c0-4.42
+                          -3.58-8-8-8z"
+                      />
+                    </svg>
+                    GitHub
+                  </a>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </section>
   );
@@ -440,7 +496,6 @@ function ProjectsSection({ darkMode }) {
 // Contact Section
 function ContactSection({ darkMode }) {
   const sectionBg = darkMode ? 'bg-[#0f1c2e]' : 'bg-gray-100';
-  const textBase  = darkMode ? 'text-white' : 'text-gray-900';
   const iconColor = darkMode ? 'text-gray-300' : 'text-gray-700';
   const hoverColor= 'hover:text-[#065F89]';
   const footerColor = darkMode ? 'text-gray-500' : 'text-gray-600';
