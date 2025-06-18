@@ -19,21 +19,46 @@ export default function App() {
       {/* Navbar */}
       <nav className="fixed top-0 left-0 w-full z-50 bg-[#0f172acc] backdrop-blur-md border-b border-white/10 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="text-xl font-bold tracking-wide text-[#A4AA7C]">
-            mel.dev
-          </div>
+        <div className="flex items-center text-xl font-bold tracking-wide text-[#A4AA7C]">
+          <img
+            src="/mjkl-logo-2025.png"
+            alt="Melglenn logo"
+            className="h-8 w-8 mr-2"
+          />
+          <span>mel.dev</span>
+        </div>
           <ul className="flex gap-6 text-sm text-gray-300 font-medium">
             <li>
-              <a href="#hero" className="hover:text-[#065F89] transition-colors duration-200">Home</a>
+              <a
+                href="#hero"
+                className="hover:text-[#065F89] transition-colors duration-200"
+              >
+                Hi <span role="img" aria-label="waving hand">👋</span>
+              </a>
             </li>
             <li>
-              <a href="#about" className="hover:text-[#065F89] transition-colors duration-200">About</a>
+              <a
+                href="#about"
+                className="hover:text-[#065F89] transition-colors duration-200"
+              >
+                About <span role="img" aria-label="information">ℹ️</span>
+              </a>
             </li>
             <li>
-              <a href="#projects" className="hover:text-[#065F89] transition-colors duration-200">Projects</a>
+              <a
+                href="#projects"
+                className="hover:text-[#065F89] transition-colors duration-200"
+              >
+                Projects <span role="img" aria-label="rocket">🚀</span>
+              </a>
             </li>
             <li>
-              <a href="#contact" className="hover:text-[#065F89] transition-colors duration-200">Contact</a>
+              <a
+                href="#contact"
+                className="hover:text-[#065F89] transition-colors duration-200"
+              >
+                Contact <span role="img" aria-label="envelope">✉️</span>
+              </a>
             </li>
           </ul>
 
@@ -70,13 +95,14 @@ export default function App() {
 // Hero Section
 function Hero({ darkMode }) {
   const bg = darkMode ? 'bg-[#0f172a] text-white' : 'bg-white text-gray-900';
+  const hiColor = darkMode ? 'text-white' : 'text-[#263350]';
   return (
     <section
       id="hero"
       className={`${bg} min-h-screen flex flex-col justify-center items-center px-6 pt-24 pb-16 text-center transition-colors duration-300`}
     >
       <h1 className="text-5xl sm:text-6xl font-extrabold mb-4">
-        <span className={darkMode ? 'text-white' : 'text-gray-900'}>Hi, I’m</span>{' '}
+        <span className={hiColor}>Hi, I’m</span>{' '}
         <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#065F89] to-[#A4AA7C]">
           Melglenn James
         </span>
@@ -86,7 +112,7 @@ function Hero({ darkMode }) {
       </p>
       <a
         href="#projects"
-        className={`px-6 py-3 rounded-full transition duration-300
+        className={`px-6 py-3 mt-4 rounded-full transition duration-300
           ${darkMode
             ? 'bg-[#065F89] hover:bg-[#05486b] text-white'
             : 'bg-[#065F89]/80 hover:bg-[#065F89] text-white'}
