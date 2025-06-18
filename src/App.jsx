@@ -14,6 +14,8 @@ export default function App() {
     ? 'bg-[#0f172a] text-white'
     : 'bg-white text-gray-900';
 
+  const [mobileOpen, setMobileOpen] = useState(false)
+
   return (
     <div className={`${rootClass} font-sans transition-colors duration-300`}>
       {/* Navbar */}
@@ -95,32 +97,45 @@ export default function App() {
           </div>
         </div>
 
-        {/* Mobile menu (dropdown) */}
-        {mobileOpen && (
-          <div className="md:hidden bg-[#0f172acc] backdrop-blur-md border-t border-white/10">
-            <ul className="flex flex-col gap-4 px-6 py-4 text-gray-300">
-              {['hero','about','projects','contact'].map((id, idx) => {
-                const labels = [
-                  <>Hi <span role="img" aria-label="waving">👋</span></>,
-                  <>About <span role="img" aria-label="info">ℹ️</span></>,
-                  <>Projects <span role="img" aria-label="rocket">🚀</span></>,
-                  <>Contact <span role="img" aria-label="mail">✉️</span></>,
-                ]
-                return (
-                  <li key={id}>
-                    <a
-                      href={`#${id}`}
-                      className="block py-2 hover:text-[#065F89] transition-colors duration-200"
-                      onClick={() => setMobileOpen(false)}
-                    >
-                      {labels[idx]}
-                    </a>
-                  </li>
-                )
-              })}
-            </ul>
-          </div>
-        )}
+        {/* Mobile menu (animated dropdown) */}
+        <div
+          className={`
+            md:hidden
+            bg-[#0f172acc] backdrop-blur-md border-t border-white/10
+            overflow-hidden
+            transition-all duration-300 ease-in-out
+            ${mobileOpen ? 'max-h-screen' : 'max-h-0'}
+          `}
+        >
+          <ul
+            className={`
+              flex flex-col gap-4 px-6
+              transition-[opacity, padding] duration-300 ease-in-out
+              ${mobileOpen ? 'py-4 opacity-100' : 'py-0 opacity-0'}
+              text-gray-300
+            `}
+          >
+            {['hero','about','projects','contact'].map((id, idx) => {
+              const labels = [
+                <>Hi <span role="img" aria-label="waving">👋</span></>,
+                <>About <span role="img" aria-label="info">ℹ️</span></>,
+                <>Projects <span role="img" aria-label="rocket">🚀</span></>,
+                <>Contact <span role="img" aria-label="mail">✉️</span></>,
+              ];
+              return (
+                <li key={id}>
+                  <a
+                    href={`#${id}`}
+                    className="block hover:text-[#065F89] transition-colors duration-200"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {labels[idx]}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       </nav>
 
       <Hero darkMode={darkMode} />
@@ -147,7 +162,7 @@ function Hero({ darkMode }) {
           Melglenn James
         </span>
       </h1>
-      <p className={darkMode ? 'text-gray-400' : 'text-gray-600'} max-w-xl text-lg mb-6>
+      <p className={`${darkMode ? 'text-gray-400' : 'text-gray-600'} max-w-xl text-lg mb-6`}>
         Full-stack developer crafting sleek, scalable web apps with React, Tailwind, Laravel & MySQL.
       </p>
       <a
