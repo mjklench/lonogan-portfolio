@@ -185,7 +185,7 @@ function Hero({ darkMode }) {
     >
       <div className="max-w-3xl mx-auto text-center px-6 pt-24 pb-16 space-y-6">
         {/* Animated Blob Photo */}
-        <div className="w-72 h-72 mx-auto">
+        <div className="w-[350px] h-[300px] mx-auto">
           <img
             src="/mjkl-picture-2023.png"
             alt="Melglenn James"
