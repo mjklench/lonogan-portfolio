@@ -203,7 +203,7 @@ function Hero({ darkMode }) {
         <h1 className="text-5xl sm:text-6xl font-extrabold">
           <span className={bgColor}>Hi, I’m</span>{' '}
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#065F89] to-[#A4AA7C]">
-            Melglenn James
+            Melglenn James K. Lonogan
           </span>
         </h1>
 
