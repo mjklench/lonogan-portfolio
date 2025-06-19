@@ -237,10 +237,10 @@ function About({ darkMode }) {
           About Me
         </h2>
         <p className={`leading-relaxed ${textColor}`}>
-          I’m a Bachelor of Science in Computer Science graduate from the{' '}
-          <span className={highlight}>University of Baguio</span> (Class of 2024). Currently, I serve as an{' '}
-          <span className={highlight}>IT Support Specialist</span> and designated Programmer at{' '}
-          <span className={highlight}>Treasure Link Cooperative Society</span>. In this role, I blend hands-on technical support with{' '}
+          I’m a <span className={highlight}>Bachelor of Science in Computer Science</span> graduate from the{' '}
+          University of Baguio (Class of 2024). Currently, I serve as an{' '}
+          <span className={highlight}>IT Support Specialist</span> and designated <span className={highlight}>Programmer</span> at{' '}
+          <span className={highlight}>Treasure Link Cooperative Society</span>. In this role, I blend hands-on <span className={highlight}>technical support</span> with{' '}
           <span className={highlight}>full-stack development</span>, crafting intuitive user interfaces and building robust back-end services and databases. My passion is delivering end-to-end applications that streamline processes, enhance user experiences, and scale with organizational needs.
         </p>
       </div>
@@ -288,7 +288,7 @@ function ProjectsSection({ darkMode }) {
     >
       <div className="max-w-7xl mx-auto">
         <h2 className={`text-3xl sm:text-4xl font-bold mb-6 text-center ${headingColor}`}>
-          My Projects
+          Projects
         </h2>
 
         {/* Tech filters */}
@@ -323,7 +323,7 @@ function ProjectsSection({ darkMode }) {
           {isVisible(['PHP','MySQL']) && (
             <div className={`${cardBg} rounded-lg overflow-hidden shadow-lg`}>
               <img
-                src="https://via.placeholder.com/400x250"
+                // src="https://via.placeholder.com/400x250"
                 alt="Project A"
                 className="w-full h-40 object-cover"
                 loading="lazy"
@@ -392,7 +392,7 @@ function ProjectsSection({ darkMode }) {
           {isVisible(['React','Tailwind','JavaScript']) && (
             <div className={`${cardBg} rounded-lg overflow-hidden shadow-lg`}>
               <img
-                src="https://via.placeholder.com/400x250"
+                // src="https://via.placeholder.com/400x250"
                 alt="Project B"
                 className="w-full h-40 object-cover"
                 loading="lazy"
@@ -454,7 +454,7 @@ function ProjectsSection({ darkMode }) {
           {isVisible(['JavaScript','Node.js','Socket.io']) && (
             <div className={`${cardBg} rounded-lg overflow-hidden shadow-lg`}>
               <img
-                src="https://via.placeholder.com/400x250"
+                // src="https://via.placeholder.com/400x250"
                 alt="Project C"
                 className="w-full h-40 object-cover"
                 loading="lazy"
