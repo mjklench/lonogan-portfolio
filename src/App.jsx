@@ -26,14 +26,19 @@ export default function App() {
       <nav className="fixed top-0 left-0 w-full z-50 bg-[#0f172acc] backdrop-blur-md border-b border-white/10 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center text-xl font-bold tracking-wide text-[#A4AA7C]">
+          <a
+            href="#hello"
+            onClick={() => setMobileOpen(false)}
+            className="flex items-center text-xl font-bold tracking-wide text-[#A4AA7C] cursor-pointer hover:opacity-80 transition-opacity"
+            aria-label="Go to top"
+          >
             <img
               src="/mjkl-logo-2025.png"
               alt="Melglenn logo"
               className="h-8 w-8 mr-2"
             />
             <span>&lt;mel-dev&gt;</span>
-          </div>
+          </a>
 
           {/* Desktop links */}
           <ul className="hidden md:flex gap-6 text-sm text-gray-300 font-medium">
@@ -155,9 +160,10 @@ export default function App() {
 
 // Hero Section
 function Hero({ darkMode }) {
-  const bg = darkMode ? 'bg-[#0f172a] text-white' : 'bg-white text-gray-900';
-  const hiColor = darkMode ? 'text-white' : 'text-[#263350]';
-  const btnBg = darkMode
+  const bg            = darkMode ? 'bg-[#0f172a] text-white' : 'bg-white text-gray-900';
+  const bgColor       = darkMode ? 'text-white' : 'text-[#263350]';
+  const subtitleColor = darkMode ? 'text-gray-400' : 'text-gray-700';
+  const btnBg         = darkMode
     ? 'bg-[#065F89] hover:bg-[#05486b] text-white'
     : 'bg-[#065F89]/80 hover:bg-[#065F89] text-white';
 
@@ -166,7 +172,7 @@ function Hero({ darkMode }) {
       id="hello"
       className={`${bg} min-h-screen flex items-center justify-center transition-colors duration-300`}
     >
-      <div className="max-w-3xl mx-auto text-center px-6 pt-24 pb-16 space-y-8">
+      <div className="max-w-3xl mx-auto text-center px-6 pt-24 pb-16 space-y-6">
         {/* Blob-shaped Photo */}
         <div className="w-72 h-72 mx-auto">
           <img
@@ -174,23 +180,34 @@ function Hero({ darkMode }) {
             alt="Melglenn James"
             className="
               w-full h-full object-cover
-              rounded-[42%_62%_32%_42%] 
-              border-4 border-[#065F89] 
+              rounded-[44%_62%_32%_30%]
+              border-4 border-[#065F89]
               shadow-lg
             "
           />
         </div>
 
-        {/* Intro */}
+        {/* Main Title */}
         <h1 className="text-5xl sm:text-6xl font-extrabold">
-          <span className={hiColor}>Hi, I’m</span>{' '}
+          <span className={bgColor}>Hi, I’m</span>{' '}
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#065F89] to-[#A4AA7C]">
             Melglenn James
           </span>
         </h1>
 
-        <p className={`${darkMode ? 'text-gray-400' : 'text-gray-600'} text-lg`}>
-          Full-stack developer crafting sleek, scalable web apps with React, Tailwind, Laravel & MySQL.
+        {/* Subtitle */}
+        <h2
+          className={`
+            text-2xl sm:text-3xl font-semibold
+            ${bgColor}
+          `}
+        >
+          Full-Stack Developer
+        </h2>
+
+        {/* Broad Descriptor */}
+        <p className={`${subtitleColor} text-lg max-w-lg mx-auto`}>
+          Building end-to-end solutions—from intuitive interfaces to backend services and data persistence—ensuring seamless experiences across platforms.
         </p>
 
         <a
@@ -206,18 +223,25 @@ function Hero({ darkMode }) {
 
 // About Section
 function About({ darkMode }) {
-  const bg = darkMode ? 'bg-[#0f1c2e] text-white' : 'bg-gray-100 text-gray-900';
+  const bg        = darkMode ? 'bg-[#0f1c2e] text-white' : 'bg-gray-100 text-gray-900';
   const highlight = darkMode ? 'text-[#A4AA7C]' : 'text-[#065F89]';
+  const textColor = darkMode ? 'text-gray-300' : 'text-gray-700';
+
   return (
-    <section id="about" className={`${bg} py-24 px-6 text-center transition-colors duration-300`}>
+    <section
+      id="about"
+      className={`${bg} py-24 px-6 text-center transition-colors duration-300`}
+    >
       <div className="max-w-3xl mx-auto">
-        <h2 className={`text-3xl sm:text-4xl font-bold mb-6 ${highlight}`}>About Me</h2>
-        <p className={`leading-relaxed ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-          I’m a passionate full-stack developer with experience in{' '}
-          <span className={highlight}>React</span>,{' '}
-          <span className={highlight}>Laravel</span>,{' '}
-          <span className={highlight}>MySQL</span>, and{' '}
-          <span className={highlight}>Tailwind CSS</span>. I love building elegant UIs…
+        <h2 className={`text-3xl sm:text-4xl font-bold mb-6 ${highlight}`}>
+          About Me
+        </h2>
+        <p className={`leading-relaxed ${textColor}`}>
+          I’m a Bachelor of Science in Computer Science graduate from the{' '}
+          <span className={highlight}>University of Baguio</span> (Class of 2024). Currently, I serve as an{' '}
+          <span className={highlight}>IT Support Specialist</span> and designated Programmer at{' '}
+          <span className={highlight}>Treasure Link Cooperative Society</span>. In this role, I blend hands-on technical support with{' '}
+          <span className={highlight}>full-stack development</span>, crafting intuitive user interfaces and building robust back-end services and databases. My passion is delivering end-to-end applications that streamline processes, enhance user experiences, and scale with organizational needs.
         </p>
       </div>
     </section>
@@ -570,7 +594,9 @@ function ContactSection({ darkMode }) {
           </a>
 
           <a
-            href="mailto:lonogan.melglennjk@gmail.com"
+          href="https://mail.google.com/mail/?view=cm&fs=1&to=lonogan.melglennjk@gmail.com"
+          target="_blank"
+          rel="noopener noreferrer"
             className={`flex flex-col items-center ${hoverColor} transition`}
           >
             <svg
