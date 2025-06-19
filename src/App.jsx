@@ -571,6 +571,8 @@ function ContactSection({ darkMode }) {
           {/* GitHub */}
           <a
             href="https://github.com/mjklench"
+            title="GitHub: mjklench"
+            aria-label="GitHub: mjklench"
             target="_blank"
             rel="noopener noreferrer"
             className={`flex flex-col items-center ${hoverColor} transition`}
@@ -604,6 +606,8 @@ function ContactSection({ darkMode }) {
 
           <a
             href="https://www.linkedin.com/in/mjklonogan21/"
+            title="LinkedIn: mjklonogan21"
+            aria-label="LinkedIn: mjklonogan21"
             target="_blank"
             rel="noopener noreferrer"
             className={`flex flex-col items-center ${hoverColor} transition`}
@@ -626,7 +630,9 @@ function ContactSection({ darkMode }) {
           </a>
 
           <a
-          href="https://mail.google.com/mail/?view=cm&fs=1&to=lonogan.melglennjk@gmail.com"
+          href="mailto:lonogan.melglennjk@gmail.com"
+          title="Email: lonogan.melglennjk@gmail.com"
+          aria-label="Email: lonogan.melglennjk@gmail.com"
           target="_blank"
           rel="noopener noreferrer"
             className={`flex flex-col items-center ${hoverColor} transition`}
