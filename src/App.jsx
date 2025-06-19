@@ -65,7 +65,7 @@ export default function App() {
           </ul>
 
           {/* Right side buttons */}
-          <div className="flex items-center">
+          <div className="flex items-center space-x-4">
             {/* Mobile menu toggle */}
             <button
               onClick={() => setMobileOpen(o => !o)}
@@ -87,7 +87,7 @@ export default function App() {
             </button>
 
             {/* Theme toggle switch */}
-            <label className="ml-2 inline-flex items-center cursor-pointer relative">
+            <label className="inline-flex items-center cursor-pointer relative">
               {/* Hidden checkbox */}
               <input
                 type="checkbox"
@@ -131,7 +131,7 @@ export default function App() {
         >
           <ul
             className={`
-              flex flex-col gap-4 px-6
+              flex flex-col items-center gap-4 px-6
               transition-[opacity, padding] duration-300 ease-in-out
               ${mobileOpen ? 'py-4 opacity-100' : 'py-0 opacity-0'}
               text-gray-300
@@ -246,7 +246,10 @@ function About({ darkMode }) {
     >
       <div className="max-w-3xl mx-auto">
         <h2 className={`text-3xl sm:text-4xl font-bold mb-6 ${highlight}`}>
-          About Me
+          About Me{' '}
+          <span role="img" aria-label="technologist" className="inline-block ml-2">
+            🧑‍💻
+          </span>
         </h2>
         <p className={`leading-relaxed ${textColor}`}>
           I’m a <span className={highlight}>Bachelor of Science in Computer Science</span> graduate from the{' '}
@@ -300,7 +303,10 @@ function ProjectsSection({ darkMode }) {
     >
       <div className="max-w-7xl mx-auto">
         <h2 className={`text-3xl sm:text-4xl font-bold mb-6 text-center ${headingColor}`}>
-          Projects
+          Projects{' '} (Still working on this section)
+          <span role="img" aria-label="rocket" className="inline-block ml-2">
+            🛠️
+          </span>
         </h2>
 
         {/* Tech filters */}
@@ -531,24 +537,38 @@ function ProjectsSection({ darkMode }) {
 
 // Contact Section
 function ContactSection({ darkMode }) {
-  const sectionBg = darkMode ? 'bg-[#0f1c2e]' : 'bg-gray-100';
-  const iconColor = darkMode ? 'text-gray-300' : 'text-gray-700';
-  const hoverColor= 'hover:text-[#065F89]';
+  const sectionBg   = darkMode ? 'bg-[#0f1c2e]' : 'bg-gray-100';
+  const iconColor   = darkMode ? 'text-gray-300' : 'text-gray-700';
+  const hoverColor  = 'hover:text-[#065F89]';
   const footerColor = darkMode ? 'text-gray-500' : 'text-gray-600';
-  const headingColor = darkMode ? 'text-[#A4AA7C]' : 'text-[#065F89]';
+  const headingColor= darkMode ? 'text-[#A4AA7C]' : 'text-[#065F89]';
 
   return (
     <section
       id="contact"
-      className={`${sectionBg} py-24 px-6 transition-colors duration-300`}
+      className={`${sectionBg} relative overflow-hidden py-24 px-6 transition-colors duration-300`}
     >
-      <div className="max-w-7xl mx-auto text-center space-y-8">
+      {/* Animated blob2 background */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <div className="
+            w-[350px] h-[300px]
+            bg-[#A4AA7C]/20
+            animate-blob2
+          " />
+      </div>
+
+      {/* Foreground content */}
+      <div className="relative z-10 max-w-7xl mx-auto text-center space-y-8">
         <h2 className={`text-3xl font-bold ${headingColor}`}>
-          Get in Touch
+          Get in Touch{' '}
+          <span role="img" aria-label="handshake" className="inline-block ml-2">
+            🤝
+          </span>
         </h2>
 
         {/* Social Icons */}
         <div className={`flex justify-center gap-8 ${iconColor}`}>
+          {/* GitHub */}
           <a
             href="https://github.com/mjklench"
             target="_blank"
