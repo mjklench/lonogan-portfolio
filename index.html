@@ -5,11 +5,24 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/mjkl-logo-2025.png" />
     <script src="https://cdn.tailwindcss.com"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <style>
       html {
         scroll-behavior: smooth;
       }
+      
+      @keyframes blob {
+        0%   { border-radius: 44% 62% 32% 30%; }
+        33%  { border-radius: 52% 42% 55% 45%; }
+        66%  { border-radius: 32% 66% 42% 62%; }
+        100% { border-radius: 44% 62% 32% 30%; }
+      }
+
+      .animate-blob {
+        animation: blob 8s ease-in-out infinite;
+      }
     </style>
+
     <title>&lt;mel-dev&gt;</title>
   </head>
   <body>

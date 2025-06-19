@@ -86,25 +86,36 @@ export default function App() {
               )}
             </button>
 
-            {/* Theme toggle */}
-            <button
-              onClick={() => setDarkMode(dm => !dm)}
-              className="ml-2 p-2 rounded hover:bg-gray-700/50 transition-colors"
-              aria-pressed={darkMode}
-              aria-label="Toggle light/dark mode"
-            >
-              {darkMode ? (
-                /* Sun icon */
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 4.354a7.646 7.646 0 100 15.292 7.646 7.646 0 000-15.292zM12 2v2.5M12 19.5V22M4.354 12H2m19.5 0h-2.5M5.636 5.636l-1.768-1.768m15.364 15.364l-1.768-1.768M18.364 5.636l1.768-1.768M2.596 19.364l1.768-1.768"/>
-                </svg>
-              ) : (
-                /* Moon icon */
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-200" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
-                </svg>
-              )}
-            </button>
+            {/* Theme toggle switch */}
+            <label className="ml-2 inline-flex items-center cursor-pointer relative">
+              {/* Hidden checkbox */}
+              <input
+                type="checkbox"
+                checked={darkMode}
+                onChange={() => setDarkMode(dm => !dm)}
+                className="sr-only peer"
+                aria-label="Toggle light/dark mode"
+              />
+
+              {/* Track */}
+              <div
+                className={`
+                  w-12 h-6 rounded-full
+                  bg-gray-300 peer-checked:bg-gray-600
+                  transition-colors duration-200
+                `}
+              />
+
+              {/* Thumb */}
+              <div
+                className={`
+                  absolute top-0.5 left-0.5
+                  w-5 h-5 bg-white rounded-full shadow
+                  transition-transform duration-200
+                  peer-checked:translate-x-6
+                `}
+              />
+            </label>
           </div>
         </div>
 
@@ -173,7 +184,7 @@ function Hero({ darkMode }) {
       className={`${bg} min-h-screen flex items-center justify-center transition-colors duration-300`}
     >
       <div className="max-w-3xl mx-auto text-center px-6 pt-24 pb-16 space-y-6">
-        {/* Blob-shaped Photo */}
+        {/* Animated Blob Photo */}
         <div className="w-72 h-72 mx-auto">
           <img
             src="/mjkl-picture-2023.png"
@@ -183,6 +194,7 @@ function Hero({ darkMode }) {
               rounded-[44%_62%_32%_30%]
               border-4 border-[#065F89]
               shadow-lg
+              animate-blob
             "
           />
         </div>
@@ -238,7 +250,7 @@ function About({ darkMode }) {
         </h2>
         <p className={`leading-relaxed ${textColor}`}>
           I’m a <span className={highlight}>Bachelor of Science in Computer Science</span> graduate from the{' '}
-          University of Baguio (Class of 2024). Currently, I serve as an{' '}
+          <span className={highlight}>University of Baguio</span> (Class of 2024). Currently, I serve as an{' '}
           <span className={highlight}>IT Support Specialist</span> and designated <span className={highlight}>Programmer</span> at{' '}
           <span className={highlight}>Treasure Link Cooperative Society</span>. In this role, I blend hands-on <span className={highlight}>technical support</span> with{' '}
           <span className={highlight}>full-stack development</span>, crafting intuitive user interfaces and building robust back-end services and databases. My passion is delivering end-to-end applications that streamline processes, enhance user experiences, and scale with organizational needs.
