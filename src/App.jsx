@@ -253,7 +253,7 @@ function About({ darkMode }) {
           <span className={highlight}>University of Baguio</span> (Class of 2024). Currently, I serve as an{' '}
           <span className={highlight}>IT Support Specialist</span> and designated <span className={highlight}>Programmer</span> at{' '}
           <span className={highlight}>Treasure Link Cooperative Society</span>. In this role, I blend hands-on <span className={highlight}>technical support</span> with{' '}
-          <span className={highlight}>full-stack development</span>, crafting intuitive user interfaces and building robust back-end services and databases. My passion is delivering end-to-end applications that streamline processes, enhance user experiences, and scale with organizational needs.
+          <span className={highlight}>full-stack development</span>, crafting intuitive user interfaces and building robust back-end services and databases. Eager to embrace new challenges, I’m committed to ongoing growth—consistently broadening my knowledge and sharpening my skills.
         </p>
       </div>
     </section>
