@@ -265,271 +265,167 @@ function About({ darkMode }) {
 
 // Projects Section
 function ProjectsSection({ darkMode }) {
-  const allTechs = ['PHP','CSS','MySQL','JavaScript','React','Tailwind','Node.js','Socket.io'];
-  const [selected, setSelected] = useState([]);
+  {/* Types of Projects */}
+  const types = [
+    { label: 'All', value: 'all' },
+    { label: 'College', value: 'college' },
+    { label: 'Courses', value: 'courses' },
+    { label: 'Employment', value: 'employment' },
+  ];
 
+  {/* Tech Filters */}
+  const allTechs = ['WordPress','PHP','Laravel','Livewire','Tailwind','Alpine','Bootstrap','MySQL','HTML','CSS','React','Express','JavaScript'];
+
+  {/* Project Data */}
+  const projects = [
+    { id:1, type:'college', title:'OJT E-commerce Website', description:'Created using WordPress and PHP during OJT at Linkage Web Development', image:'/placeholder-college-1.jpg', tags:['WordPress','PHP'], github:null, demo:'https://strapped.customadesign.info/' },
+    { id:2, type:'college', title:'Academic Management System', description:'Capstone project built with TALL stack (Tailwind, Alpine, Livewire, Laravel)', image:'/placeholder-college-2.jpg', tags:['Laravel','Livewire','Tailwind','Alpine'], github:'https://github.com/Judaemon/Academic-Management-System', demo:null },
+    { id:3, type:'college', title:'Ganduyan Taxi Tours Management', description:'3rd Year project using Laravel, Bootstrap, and MySQL', image:'/placeholder-college-3.jpg', tags:['Laravel','Bootstrap','MySQL'], github:null, demo:null },
+    { id:4, type:'courses', title:'Survey Form', description:'Responsive form built with HTML & CSS', image:'/placeholder-course-1.jpg', tags:['HTML','CSS'], github:null, demo:'/survey-form' },
+    { id:5, type:'courses', title:'Tribute Page', description:'Built as part of freeCodeCamp Responsive Web Design Certificate', image:'/placeholder-course-2.jpg', tags:['HTML','CSS'], github:null, demo:'/tribute-page' },
+    { id:6, type:'courses', title:'Technical Documentation', description:'Documentation page using semantic HTML & CSS', image:'/placeholder-course-3.jpg', tags:['HTML','CSS'], github:null, demo:'/technical-documentation' },
+    { id:7, type:'courses', title:'Product Landing Page', description:'Landing page project from freeCodeCamp', image:'/placeholder-course-4.jpg', tags:['HTML','CSS'], github:null, demo:'/product-landing' },
+    { id:8, type:'courses', title:'Personal Portfolio Webpage', description:'Portfolio built using HTML & CSS', image:'/placeholder-course-5.jpg', tags:['HTML','CSS'], github:null, demo:'/portfolio-example' },
+    { id:9, type:'employment', title:'TLCS-INVMS', description:'Inventory system built with React, Express, and MySQL', image:'/placeholder-employment-1.jpg', tags:['React','Express','MySQL'], github:null, demo:null },
+    { id:10, type:'employment', title:'TLCS BCO Attendance', description:'Attendance system built with Laravel and React', image:'/placeholder-employment-2.jpg', tags:['Laravel','React'], github:null, demo:null },
+  ];
+
+  {/* State */}
+  const [selectedType, setSelectedType] = useState('all');
+  const [selectedTechs, setSelectedTechs] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6;
+
+  {/* Filtering */}
+  const byType = selectedType === 'all'
+    ? projects
+    : projects.filter(p => p.type === selectedType);
+
+  const byTech = selectedTechs.length === 0
+    ? byType
+    : byType.filter(p =>
+        p.tags.some(tag => selectedTechs.includes(tag))
+      );
+
+  {/* Pagination Calculator */}
+  const totalPages = Math.ceil(byTech.length / itemsPerPage);
+  const start = (currentPage - 1) * itemsPerPage;
+  const paginated = byTech.slice(start, start + itemsPerPage);
+
+  {/* Theme Classes */}
+  const sectionBg      = darkMode ? 'bg-[#0f172a]'    : 'bg-white';
+  const headingColor   = darkMode ? 'text-[#A4AA7C]'  : 'text-[#065F89]';
+  const cardBg         = darkMode ? 'bg-gray-800 text-white' : 'bg-gray-100 text-gray-900';
+  const descColor      = darkMode ? 'text-gray-400'  : 'text-gray-700';
+  const tagBg          = darkMode ? 'bg-[#A4AA7C]/50 text-white' : 'bg-[#A4AA7C]/50 text-gray-900';
+  const linkOff        = darkMode ? 'text-gray-300 hover:text-white' : 'text-gray-700 hover:text-gray-900';
+  const selectBg       = darkMode ? 'bg-gray-800 text-white' : 'bg-gray-200 text-gray-900';
+  const btnOff         = darkMode ? 'bg-gray-800 text-gray-300 hover:bg-gray-700' : 'bg-gray-200 text-gray-700 hover:bg-gray-300';
+  const btnOn          = 'bg-[#065F89] text-white';
+  const paginationBtn  = darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-900';
+  const paginationActive = 'bg-[#065F89] text-white';
+
+  {/* Handlers */}
   const toggleTech = tech => {
-    setSelected(sel =>
-      sel.includes(tech)
-        ? sel.filter(t => t !== tech)
-        : [...sel, tech]
+    setCurrentPage(1);
+    setSelectedTechs(s =>
+      s.includes(tech) ? s.filter(x => x !== tech) : [...s, tech]
     );
   };
-  const resetFilters = () => setSelected([]);
-
-  const sectionBg    = darkMode ? 'bg-[#0f172a]' : 'bg-white';
-  const headingColor = darkMode ? 'text-[#A4AA7C]' : 'text-[#065F89]';
-  const cardBg       = darkMode ? 'bg-gray-800 text-white' : 'bg-gray-100 text-gray-900';
-  const descColor    = darkMode ? 'text-gray-400' : 'text-gray-700';
-  const tagBg        = darkMode
-    ? 'bg-[#A4AA7C]/50 text-white'
-    : 'bg-[#A4AA7C]/50 text-gray-900';
-  const linkOff      = darkMode
-    ? 'text-gray-300 hover:text-white'
-    : 'text-gray-700 hover:text-gray-900';
-  const btnOff = darkMode
-    ? 'bg-gray-800 text-gray-300 hover:bg-gray-700'
-    : 'bg-gray-200 text-gray-700 hover:bg-gray-300';
-  const btnOn = 'bg-[#065F89] text-white';
-
-  // helper to check if a project should display
-  const isVisible = techs =>
-    selected.length === 0 || techs.some(t => selected.includes(t));
+  const resetTechs = () => {
+    setCurrentPage(1);
+    setSelectedTechs([]);
+  };
 
   return (
-    <section
-      id="projects"
-      className={`${sectionBg} py-24 px-6 transition-colors duration-300`}
-    >
+    <section id="projects" className={`${sectionBg} py-24 px-6 transition-colors duration-300`}>
       <div className="max-w-7xl mx-auto">
         <h2 className={`text-3xl sm:text-4xl font-bold mb-6 text-center ${headingColor}`}>
-          Projects{' '} (Still working on this section)
-          <span role="img" aria-label="rocket" className="inline-block ml-2">
-            🛠️
-          </span>
+          Projects <span role="img" aria-label="rocket">🛠️</span>
         </h2>
 
-        {/* Tech filters */}
+        {/* Type Dropdown */}
+        <div className="flex justify-center mb-4">
+          <select
+            className={`px-4 py-2 rounded ${selectBg} focus:outline-none`}
+            value={selectedType}
+            onChange={e => { setSelectedType(e.target.value); setCurrentPage(1); }}
+          >
+            {types.map(t => (
+              <option key={t.value} value={t.value}>{t.label}</option>
+            ))}
+          </select>
+        </div>
+
+        {/* Tech Filters */}
         <div className="flex flex-wrap gap-2 justify-center mb-8">
           {allTechs.map(tech => {
-            const isOn = selected.includes(tech);
+            const active = selectedTechs.includes(tech);
             return (
               <button
                 key={tech}
                 onClick={() => toggleTech(tech)}
-                className={`px-3 py-1 rounded-full text-sm font-medium transition ${
-                  isOn ? btnOn : btnOff
-                }`}
+                className={`px-3 py-1 rounded-full text-sm font-medium transition ${active ? btnOn : btnOff}`}
               >
                 {tech}
               </button>
             );
           })}
           <button
-            onClick={resetFilters}
-            className={`ml-4 px-3 py-1 rounded-full text-sm transition ${
-              darkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-300'
-            }`}
+            onClick={resetTechs}
+            className={`ml-4 px-3 py-1 rounded-full text-sm transition ${darkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-300'}`}
           >
             Reset
           </button>
         </div>
 
-        {/* Projects grid */}
+        {/* Project Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {/* Project A */}
-          {isVisible(['PHP','MySQL']) && (
-            <div className={`${cardBg} rounded-lg overflow-hidden shadow-lg`}>
-              <img
-                // src="https://via.placeholder.com/400x250"
-                alt="Project A"
-                className="w-full h-40 object-cover"
-                loading="lazy"
-              />
+          {paginated.map(p => (
+            <div key={p.id} className={`${cardBg} rounded-lg overflow-hidden shadow-lg`}>
+              <img src={p.image} alt={p.title} className="w-full h-40 object-cover" loading="lazy" />
               <div className="p-4">
-                <h3 className="text-xl font-semibold mb-2">Project A</h3>
-                <p className={`${descColor} text-sm mb-3`}>
-                  A CRUD app built with PHP & MySQL.
-                </p>
+                <h3 className="text-xl font-semibold mb-2">{p.title}</h3>
+                <p className={`${descColor} text-sm mb-3`}>{p.description}</p>
                 <div className="flex flex-wrap gap-2 mb-3">
-                  <span className={`px-2 py-1 ${tagBg} text-xs rounded-full`}>PHP</span>
-                  <span className={`px-2 py-1 ${tagBg} text-xs rounded-full`}>MySQL</span>
+                  {p.tags.map(tag => (
+                    <span key={tag} className={`px-2 py-1 ${tagBg} text-xs rounded-full`}>{tag}</span>
+                  ))}
                 </div>
                 <div className="flex items-center gap-4 text-sm">
-                  <a
-                    href="https://github.com/username/project-a"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`flex items-center ${linkOff}`}
-                  >
-                    {/* GitHub Icon */}
-                    <svg
-                      className="h-5 w-5 mr-1"
-                      viewBox="0 0 16 16"
-                      fill="currentColor"
-                      xmlns="http://www.w3.org/2000/svg"
-                      aria-hidden="true"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 
-                          6.53 5.47 7.59.4.07.55-.17.55-.38 
-                          0-.19-.007-.82-.01-1.49-2.01.37-2.43-.49
-                          -2.59-.94-.09-.23-.48-.94-.82-1.13-.28
-                          -.15-.68-.52-.01-.53.63-.01 1.08.58
-                          1.23.82.72 1.21 1.87.87 2.33.66.07
-                          -.52.28-.87.51-1.07-1.78-.2-3.64-.89
-                          -3.64-3.95 0-.87.31-1.59.82-2.15
-                          -.083-.2-.36-1.02.078-2.12 0 0 .67
-                          -.21 2.2.82.64-.18 1.32-.27 2-.27.68
-                          0 1.36.09 2 .27 1.53-1.04 2.2-.82
-                          2.2-.82.44 1.1.16 1.92.08 2.12.51.56
-                          .82 1.27.82 2.15 0 3.07-1.87 3.75
-                          -3.65 3.95.29.25.54.73.54 1.48 
-                          0 1.07-.01 1.93-.01 2.2 0 .21.15.46
-                          .55.38A8.013 8.013 0 0016 8c0-4.42
-                          -3.58-8-8-8z"
-                      />
-                    </svg>
-                    GitHub
-                  </a>
-                  <a
-                    href="https://example.com/a"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#065F89] hover:underline"
-                  >
-                    Live Demo
-                  </a>
+                  {p.github && (
+                    <a href={p.github} target="_blank" rel="noopener noreferrer" className={`flex items-center ${linkOff}`}>
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                        <path fillRule="evenodd" clipRule="evenodd" d="M12 0C5.371 0 0 5.371 0 12c0 5.303 3.438 9.8 8.205 11.387.6.113.82-.26.82-.577 0-.285-.011-1.041-.017-2.044-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.729.083-.729 1.205.084 1.84 1.237 1.84 1.237 1.07 1.835 2.809 1.305 3.495.997.108-.774.418-1.305.76-1.605-2.665-.303-5.466-1.333-5.466-5.932 0-1.31.468-2.381 1.235-3.221-.124-.303-.536-1.523.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.289-1.553 3.295-1.23 3.295-1.23.656 1.653.244 2.873.12 3.176.77.84 1.232 1.911 1.232 3.221 0 4.61-2.807 5.625-5.48 5.921.43.372.823 1.102.823 2.222 0 1.606-.015 2.901-.015 3.293 0 .319.216.694.825.576C20.565 21.796 24 17.298 24 12 24 5.371 18.627 0 12 0Z" />
+                      </svg>
+                      GitHub
+                    </a>
+                  )}
+                  {p.demo && (
+                    <a href={p.demo} target="_blank" rel="noopener noreferrer" className="text-[#065F89] hover:underline">
+                      Live Demo
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
-          )}
-
-          {/* Project B */}
-          {isVisible(['React','Tailwind','JavaScript']) && (
-            <div className={`${cardBg} rounded-lg overflow-hidden shadow-lg`}>
-              <img
-                // src="https://via.placeholder.com/400x250"
-                alt="Project B"
-                className="w-full h-40 object-cover"
-                loading="lazy"
-              />
-              <div className="p-4">
-                <h3 className="text-xl font-semibold mb-2">Project B</h3>
-                <p className={`${descColor} text-sm mb-3`}>
-                  A single-page React app styled with Tailwind.
-                </p>
-                <div className="flex flex-wrap gap-2 mb-3">
-                  <span className={`px-2 py-1 ${tagBg} text-xs rounded-full`}>React</span>
-                  <span className={`px-2 py-1 ${tagBg} text-xs rounded-full`}>Tailwind</span>
-                  <span className={`px-2 py-1 ${tagBg} text-xs rounded-full`}>JavaScript</span>
-                </div>
-                <div className="flex items-center gap-4 text-sm">
-                  <a
-                    href="https://github.com/username/project-b"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`flex items-center ${linkOff}`}
-                  >
-                    {/* GitHub Icon */}
-                    <svg
-                      className="h-5 w-5 mr-1"
-                      viewBox="0 0 16 16"
-                      fill="currentColor"
-                      xmlns="http://www.w3.org/2000/svg"
-                      aria-hidden="true"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 
-                          6.53 5.47 7.59.4.07.55-.17.55-.38 
-                          0-.19-.007-.82-.01-1.49-2.01.37-2.43-.49
-                          -2.59-.94-.09-.23-.48-.94-.82-1.13-.28
-                          -.15-.68-.52-.01-.53.63-.01 1.08.58
-                          1.23.82.72 1.21 1.87.87 2.33.66.07
-                          -.52.28-.87.51-1.07-1.78-.2-3.64-.89
-                          -3.64-3.95 0-.87.31-1.59.82-2.15
-                          -.083-.2-.36-1.02.078-2.12 0 0 .67
-                          -.21 2.2.82.64-.18 1.32-.27 2-.27.68
-                          0 1.36.09 2 .27 1.53-1.04 2.2-.82
-                          2.2-.82.44 1.1.16 1.92.08 2.12.51.56
-                          .82 1.27.82 2.15 0 3.07-1.87 3.75
-                          -3.65 3.95.29.25.54.73.54 1.48 
-                          0 1.07-.01 1.93-.01 2.2 0 .21.15.46
-                          .55.38A8.013 8.013 0 0016 8c0-4.42
-                          -3.58-8-8-8z"
-                      />
-                    </svg>
-                    GitHub
-                  </a>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* Project C */}
-          {isVisible(['JavaScript','Node.js','Socket.io']) && (
-            <div className={`${cardBg} rounded-lg overflow-hidden shadow-lg`}>
-              <img
-                // src="https://via.placeholder.com/400x250"
-                alt="Project C"
-                className="w-full h-40 object-cover"
-                loading="lazy"
-              />
-              <div className="p-4">
-                <h3 className="text-xl font-semibold mb-2">Project C</h3>
-                <p className={`${descColor} text-sm mb-3`}>
-                  A real-time chat app built with Socket.io & Node.js.
-                </p>
-                <div className="flex flex-wrap gap-2 mb-3">
-                  <span className={`px-2 py-1 ${tagBg} text-xs rounded-full`}>JavaScript</span>
-                  <span className={`px-2 py-1 ${tagBg} text-xs rounded-full`}>Node.js</span>
-                  <span className={`px-2 py-1 ${tagBg} text-xs rounded-full`}>Socket.io</span>
-                </div>
-                <div className="flex items-center gap-4 text-sm">
-                  <a
-                    href="https://github.com/username/project-c"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`flex items-center ${linkOff}`}
-                  >
-                    {/* GitHub Icon */}
-                    <svg
-                      className="h-5 w-5 mr-1"
-                      viewBox="0 0 16 16"
-                      fill="currentColor"
-                      xmlns="http://www.w3.org/2000/svg"
-                      aria-hidden="true"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 
-                          6.53 5.47 7.59.4.07.55-.17.55-.38 
-                          0-.19-.007-.82-.01-1.49-2.01.37-2.43-.49
-                          -2.59-.94-.09-.23-.48-.94-.82-1.13-.28
-                          -.15-.68-.52-.01-.53.63-.01 1.08.58
-                          1.23.82.72 1.21 1.87.87 2.33.66.07
-                          -.52.28-.87.51-1.07-1.78-.2-3.64-.89
-                          -3.64-3.95 0-.87.31-1.59.82-2.15
-                          -.083-.2-.36-1.02.078-2.12 0 0 .67
-                          -.21 2.2.82.64-.18 1.32-.27 2-.27.68
-                          0 1.36.09 2 .27 1.53-1.04 2.2-.82
-                          2.2-.82.44 1.1.16 1.92.08 2.12.51.56
-                          .82 1.27.82 2.15 0 3.07-1.87 3.75
-                          -3.65 3.95.29.25.54.73.54 1.48 
-                          0 1.07-.01 1.93-.01 2.2 0 .21.15.46
-                          .55.38A8.013 8.013 0 0016 8c0-4.42
-                          -3.58-8-8-8z"
-                      />
-                    </svg>
-                    GitHub
-                  </a>
-                </div>
-              </div>
-            </div>
-          )}
+          ))}
         </div>
+
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <div className="flex justify-center mt-8 space-x-2">
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map(n => (
+              <button
+                key={n}
+                onClick={() => setCurrentPage(n)}
+                className={`px-3 py-1 rounded ${n === currentPage ? paginationActive : paginationBtn}`}
+              >
+                {n}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
@@ -568,7 +464,6 @@ function ContactSection({ darkMode }) {
 
         {/* Social Icons */}
         <div className={`flex justify-center gap-8 ${iconColor}`}>
-          {/* GitHub */}
           <a
             href="https://github.com/mjklench"
             title="GitHub: mjklench"
