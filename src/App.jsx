@@ -137,7 +137,7 @@ export default function App() {
               text-gray-300
             `}
           >
-            {['hero','about','projects','contact'].map((id, idx) => {
+            {['hello','about','projects','contact'].map((id, idx) => {
               const labels = [
                 <>Hi <span role="img" aria-label="waving">👋</span></>,
                 <>About <span role="img" aria-label="info">ℹ️</span></>,
@@ -160,7 +160,7 @@ export default function App() {
         </div>
       </nav>
 
-      <Hero darkMode={darkMode} />
+      <Hello darkMode={darkMode} />
       <About darkMode={darkMode} />
       <ProjectsSection darkMode={darkMode} />
       <ContactSection darkMode={darkMode} />
@@ -169,8 +169,8 @@ export default function App() {
   );
 }
 
-// Hero Section
-function Hero({ darkMode }) {
+// Hello Section
+function Hello({ darkMode }) {
   const bg            = darkMode ? 'bg-[#0f172a] text-white' : 'bg-white text-gray-900';
   const bgColor       = darkMode ? 'text-white' : 'text-[#263350]';
   const subtitleColor = darkMode ? 'text-gray-400' : 'text-gray-700';
@@ -265,38 +265,45 @@ function About({ darkMode }) {
 
 // Projects Section
 function ProjectsSection({ darkMode }) {
-  {/* Types of Projects */}
+  // Types of Projects
   const types = [
-    { label: 'All', value: 'all' },
-    { label: 'College', value: 'college' },
-    { label: 'Courses', value: 'courses' },
-    { label: 'Employment', value: 'employment' },
+    { label: 'All',       value: 'all' },
+    { label: 'College',   value: 'college' },
+    { label: 'Courses',   value: 'courses' },
+    { label: 'Employment',value: 'employment' },
   ];
 
-  {/* Tech Filters */}
-  const allTechs = ['WordPress','PHP','Laravel','Livewire','Tailwind','Alpine','Bootstrap','MySQL','HTML','CSS','React','Express','JavaScript'];
+  // Tech Filter Groups
+  const techGroups = [
+    // Styling/CSS frameworks
+    ['HTML','CSS','Tailwind','Bootstrap','Alpine'],
+    // JavaScript ecosystem
+    ['JavaScript','React','Express'],
+    // Back-end & CMS
+    ['WordPress','PHP','Laravel','Livewire','MySQL'],
+  ];
 
-  {/* Project Data */}
+  // Project Data
   const projects = [
-    { id:1, type:'college', title:'OJT E-commerce Website', description:'Created using WordPress and PHP during OJT at Linkage Web Development', image:'/placeholder-college-1.jpg', tags:['WordPress','PHP'], github:null, demo:'https://strapped.customadesign.info/' },
-    { id:2, type:'college', title:'Academic Management System', description:'Capstone project built with TALL stack (Tailwind, Alpine, Livewire, Laravel)', image:'/placeholder-college-2.jpg', tags:['Laravel','Livewire','Tailwind','Alpine'], github:'https://github.com/Judaemon/Academic-Management-System', demo:null },
-    { id:3, type:'college', title:'Ganduyan Taxi Tours Management', description:'3rd Year project using Laravel, Bootstrap, and MySQL', image:'/placeholder-college-3.jpg', tags:['Laravel','Bootstrap','MySQL'], github:null, demo:null },
-    { id:4, type:'courses', title:'Survey Form', description:'Responsive form built with HTML & CSS', image:'/placeholder-course-1.jpg', tags:['HTML','CSS'], github:null, demo:'/survey-form' },
-    { id:5, type:'courses', title:'Tribute Page', description:'Built as part of freeCodeCamp Responsive Web Design Certificate', image:'/placeholder-course-2.jpg', tags:['HTML','CSS'], github:null, demo:'/tribute-page' },
-    { id:6, type:'courses', title:'Technical Documentation', description:'Documentation page using semantic HTML & CSS', image:'/placeholder-course-3.jpg', tags:['HTML','CSS'], github:null, demo:'/technical-documentation' },
-    { id:7, type:'courses', title:'Product Landing Page', description:'Landing page project from freeCodeCamp', image:'/placeholder-course-4.jpg', tags:['HTML','CSS'], github:null, demo:'/product-landing' },
-    { id:8, type:'courses', title:'Personal Portfolio Webpage', description:'Portfolio built using HTML & CSS', image:'/placeholder-course-5.jpg', tags:['HTML','CSS'], github:null, demo:'/portfolio-example' },
-    { id:9, type:'employment', title:'TLCS-INVMS', description:'Inventory system built with React, Express, and MySQL', image:'/placeholder-employment-1.jpg', tags:['React','Express','MySQL'], github:null, demo:null },
-    { id:10, type:'employment', title:'TLCS BCO Attendance', description:'Attendance system built with Laravel and React', image:'/placeholder-employment-2.jpg', tags:['Laravel','React'], github:null, demo:null },
+    { id:1,  type:'college',    title:'OJT E-commerce Website',       description:'Created using WordPress and PHP during OJT at Linkage Web Development', image:'/placeholder-college-1.jpg', tags:['WordPress','PHP'], github:null, demo:'https://strapped.customadesign.info/' },
+    { id:2,  type:'college',    title:'Academic Management System',    description:'Capstone project built with TALL stack (Tailwind, Alpine, Livewire, Laravel)', image:'/placeholder-college-2.jpg', tags:['Laravel','Livewire','Tailwind','Alpine'], github:'https://github.com/Judaemon/Academic-Management-System', demo:null },
+    { id:3,  type:'college',    title:'Ganduyan Taxi Tours Management',description:'3rd Year project using Laravel, Bootstrap, and MySQL', image:'/placeholder-college-3.jpg', tags:['Laravel','Bootstrap','MySQL'], github:null, demo:null },
+    { id:4,  type:'courses',    title:'Survey Form',                   description:'Responsive form built with HTML & CSS', image:'/placeholder-course-1.jpg', tags:['HTML','CSS'], github:null, demo:'/survey-form' },
+    { id:5,  type:'courses',    title:'Tribute Page',                  description:'Built as part of freeCodeCamp Responsive Web Design Certificate', image:'/placeholder-course-2.jpg', tags:['HTML','CSS'], github:null, demo:'/tribute-page' },
+    { id:6,  type:'courses',    title:'Technical Documentation',       description:'Documentation page using semantic HTML & CSS', image:'/placeholder-course-3.jpg', tags:['HTML','CSS'], github:null, demo:'/technical-documentation' },
+    { id:7,  type:'courses',    title:'Product Landing Page',          description:'Landing page project from freeCodeCamp', image:'/placeholder-course-4.jpg', tags:['HTML','CSS'], github:null, demo:'/product-landing' },
+    { id:8,  type:'courses',    title:'Personal Portfolio Webpage',    description:'Portfolio built using HTML & CSS', image:'/placeholder-course-5.jpg', tags:['HTML','CSS'], github:null, demo:'/portfolio-example' },
+    { id:9,  type:'employment', title:'TLCS-INVMS',                   description:'Inventory system built with React, Express, and MySQL', image:'/placeholder-employment-1.jpg', tags:['React','Express','MySQL'], github:null, demo:null },
+    { id:10, type:'employment', title:'TLCS BCO Attendance',          description:'Attendance system built with Laravel and React', image:'/placeholder-employment-2.jpg', tags:['Laravel','React'], github:null, demo:null },
   ];
 
-  {/* State */}
-  const [selectedType, setSelectedType] = useState('all');
-  const [selectedTechs, setSelectedTechs] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
+  // State
+  const [selectedType,   setSelectedType]   = useState('all');
+  const [selectedTechs,  setSelectedTechs]  = useState([]);
+  const [currentPage,    setCurrentPage]    = useState(1);
   const itemsPerPage = 6;
 
-  {/* Filtering */}
+  // Filters
   const byType = selectedType === 'all'
     ? projects
     : projects.filter(p => p.type === selectedType);
@@ -307,34 +314,35 @@ function ProjectsSection({ darkMode }) {
         p.tags.some(tag => selectedTechs.includes(tag))
       );
 
-  {/* Pagination Calculator */}
+  // Pagination
   const totalPages = Math.ceil(byTech.length / itemsPerPage);
-  const start = (currentPage - 1) * itemsPerPage;
-  const paginated = byTech.slice(start, start + itemsPerPage);
+  const start      = (currentPage - 1) * itemsPerPage;
+  const paginated  = byTech.slice(start, start + itemsPerPage);
 
-  {/* Theme Classes */}
-  const sectionBg      = darkMode ? 'bg-[#0f172a]'    : 'bg-white';
-  const headingColor   = darkMode ? 'text-[#A4AA7C]'  : 'text-[#065F89]';
-  const cardBg         = darkMode ? 'bg-gray-800 text-white' : 'bg-gray-100 text-gray-900';
-  const descColor      = darkMode ? 'text-gray-400'  : 'text-gray-700';
-  const tagBg          = darkMode ? 'bg-[#A4AA7C]/50 text-white' : 'bg-[#A4AA7C]/50 text-gray-900';
-  const linkOff        = darkMode ? 'text-gray-300 hover:text-white' : 'text-gray-700 hover:text-gray-900';
-  const selectBg       = darkMode ? 'bg-gray-800 text-white' : 'bg-gray-200 text-gray-900';
-  const btnOff         = darkMode ? 'bg-gray-800 text-gray-300 hover:bg-gray-700' : 'bg-gray-200 text-gray-700 hover:bg-gray-300';
-  const btnOn          = 'bg-[#065F89] text-white';
-  const paginationBtn  = darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-900';
-  const paginationActive = 'bg-[#065F89] text-white';
+  // Theming Classes
+  const sectionBg       = darkMode ? 'bg-[#0f172a]'    : 'bg-white';
+  const headingColor    = darkMode ? 'text-[#A4AA7C]'  : 'text-[#065F89]';
+  const cardBg          = darkMode ? 'bg-gray-800 text-white' : 'bg-gray-100 text-gray-900';
+  const descColor       = darkMode ? 'text-gray-400'  : 'text-gray-700';
+  const tagBg           = darkMode ? 'bg-[#A4AA7C]/50 text-white' : 'bg-[#A4AA7C]/50 text-gray-900';
+  const linkOff         = darkMode ? 'text-gray-300 hover:text-white' : 'text-gray-700 hover:text-gray-900';
+  const selectBg        = darkMode ? 'bg-gray-800 text-white' : 'bg-gray-200 text-gray-900';
+  const btnOff          = darkMode ? 'bg-gray-800 text-gray-300 hover:bg-gray-700' : 'bg-gray-200 text-gray-700 hover:bg-gray-300';
+  const btnOn           = 'bg-[#065F89] text-white';
+  const paginationBtn   = darkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-900';
+  const paginationActive= 'bg-[#065F89] text-white';
 
-  {/* Handlers */}
+  // Handlers
   const toggleTech = tech => {
     setCurrentPage(1);
     setSelectedTechs(s =>
       s.includes(tech) ? s.filter(x => x !== tech) : [...s, tech]
     );
   };
-  const resetTechs = () => {
+  const resetAll = () => {
     setCurrentPage(1);
     setSelectedTechs([]);
+    setSelectedType('all');
   };
 
   return (
@@ -347,7 +355,7 @@ function ProjectsSection({ darkMode }) {
         {/* Type Dropdown */}
         <div className="flex justify-center mb-4">
           <select
-            className={`px-4 py-2 rounded ${selectBg} focus:outline-none`}
+            className={`px-4 py-2 rounded mb-4 ${selectBg} focus:outline-none`}
             value={selectedType}
             onChange={e => { setSelectedType(e.target.value); setCurrentPage(1); }}
           >
@@ -357,26 +365,32 @@ function ProjectsSection({ darkMode }) {
           </select>
         </div>
 
-        {/* Tech Filters */}
-        <div className="flex flex-wrap gap-2 justify-center mb-8">
-          {allTechs.map(tech => {
-            const active = selectedTechs.includes(tech);
-            return (
-              <button
-                key={tech}
-                onClick={() => toggleTech(tech)}
-                className={`px-3 py-1 rounded-full text-sm font-medium transition ${active ? btnOn : btnOff}`}
-              >
-                {tech}
-              </button>
-            );
-          })}
-          <button
-            onClick={resetTechs}
-            className={`ml-4 px-3 py-1 rounded-full text-sm transition ${darkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-300'}`}
-          >
-            Reset
-          </button>
+        {/* Grouped Tech Filters */}
+        <div className="space-y-2 mb-6">
+          {techGroups.map((group, gi) => (
+            <div key={gi} className="flex flex-wrap gap-2 justify-center">
+              {group.map(tech => {
+                const active = selectedTechs.includes(tech);
+                return (
+                  <button
+                    key={tech}
+                    onClick={() => toggleTech(tech)}
+                    className={`px-3 py-1 rounded-full text-sm font-medium transition ${active ? btnOn : btnOff}`}
+                  >
+                    {tech}
+                  </button>
+                );
+              })}
+            </div>
+          ))}
+          <div className="flex justify-center">
+            <button
+              onClick={resetAll}
+              className={`px-4 py-1 mt-4 rounded text-sm font-medium transition ${darkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-300'}`}
+            >
+              Reset All Filters
+            </button>
+          </div>
         </div>
 
         {/* Project Cards */}
