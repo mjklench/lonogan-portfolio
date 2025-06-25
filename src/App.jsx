@@ -286,15 +286,15 @@ function ProjectsSection({ darkMode }) {
   // Project Data
   const projects = [
     { id:1,  type:'college',    title:'OJT E-commerce Website',       description:'Created using WordPress and PHP during OJT at Linkage Web Development', image:'/placeholder-college-1.jpg', tags:['WordPress','PHP'], github:null, demo:'https://strapped.customadesign.info/' },
-    { id:2,  type:'college',    title:'Academic Management System',    description:'Capstone project built with TALL stack (Tailwind, Alpine, Livewire, Laravel)', image:'/placeholder-college-2.jpg', tags:['Laravel','Livewire','Tailwind','Alpine'], github:'https://github.com/Judaemon/Academic-Management-System', demo:null },
-    { id:3,  type:'college',    title:'Ganduyan Taxi Tours Management',description:'3rd Year project using Laravel, Bootstrap, and MySQL', image:'/placeholder-college-3.jpg', tags:['Laravel','Bootstrap','MySQL'], github:null, demo:null },
+    { id:2,  type:'college',    title:'Academic Management System',    description:'4th Year Capstone project built with TALL stack (Tailwind, Alpine, Livewire, Laravel)', image:'/placeholder-college-2.jpg', tags:['Laravel','Livewire','Tailwind','Alpine'], github:'https://github.com/Judaemon/Academic-Management-System', demo:null },
+    { id:3,  type:'college',    title:'Ganduyan Taxi Tours Management',description:'3rd Year Software Engineering project using Laravel, Bootstrap CSS, and MySQL', image:'/placeholder-college-3.jpg', tags:['Laravel','Bootstrap','MySQL'], github:null, demo:null },
     { id:4,  type:'courses',    title:'Survey Form',                   description:'Responsive form built with HTML & CSS', image:'/placeholder-course-1.jpg', tags:['HTML','CSS'], github:null, demo:'/survey-form' },
     { id:5,  type:'courses',    title:'Tribute Page',                  description:'Built as part of freeCodeCamp Responsive Web Design Certificate', image:'/placeholder-course-2.jpg', tags:['HTML','CSS'], github:null, demo:'/tribute-page' },
     { id:6,  type:'courses',    title:'Technical Documentation',       description:'Documentation page using semantic HTML & CSS', image:'/placeholder-course-3.jpg', tags:['HTML','CSS'], github:null, demo:'/technical-documentation' },
     { id:7,  type:'courses',    title:'Product Landing Page',          description:'Landing page project from freeCodeCamp', image:'/placeholder-course-4.jpg', tags:['HTML','CSS'], github:null, demo:'/product-landing' },
     { id:8,  type:'courses',    title:'Personal Portfolio Webpage',    description:'Portfolio built using HTML & CSS', image:'/placeholder-course-5.jpg', tags:['HTML','CSS'], github:null, demo:'/portfolio-example' },
-    { id:9,  type:'employment', title:'TLCS-INVMS',                   description:'Inventory system built with React, Express, and MySQL', image:'/placeholder-employment-1.jpg', tags:['React','Express','MySQL'], github:null, demo:null },
-    { id:10, type:'employment', title:'TLCS BCO Attendance',          description:'Attendance system built with Laravel and React', image:'/placeholder-employment-2.jpg', tags:['Laravel','React'], github:null, demo:null },
+    { id:9,  type:'employment', title:'TLCS-INVMS',                   description:'Assisted in building an Inventory System using React, Express, and MySQL', image:'/placeholder-employment-1.jpg', tags:['React','Express','MySQL'], github:null, demo:null },
+    { id:10, type:'employment', title:'TLCS BCO Attendance',          description:'Tasked to create an Attendance System using Laravel and React', image:'/placeholder-employment-2.jpg', tags:['Laravel','React'], github:null, demo:null },
   ];
 
   // State
