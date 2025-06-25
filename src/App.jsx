@@ -281,20 +281,22 @@ function ProjectsSection({ darkMode }) {
     ['JavaScript','React','Express'],
     // Back-end & CMS
     ['WordPress','PHP','Laravel','Livewire','MySQL'],
+    // Other Skills
+    ['Photoshop','Web Design','Trello','Docker']
   ];
 
   // Project Data
   const projects = [
-    { id:1,  type:'college',    title:'OJT E-commerce Website',       description:'Created using WordPress and PHP during OJT at Linkage Web Development', image:'/placeholder-college-1.jpg', tags:['WordPress','PHP'], github:null, demo:'https://strapped.customadesign.info/' },
-    { id:2,  type:'college',    title:'Academic Management System',    description:'4th Year Capstone project built with TALL stack (Tailwind, Alpine, Livewire, Laravel)', image:'/placeholder-college-2.jpg', tags:['Laravel','Livewire','Tailwind','Alpine'], github:'https://github.com/Judaemon/Academic-Management-System', demo:null },
-    { id:3,  type:'college',    title:'Ganduyan Taxi Tours Management',description:'3rd Year Software Engineering project using Laravel, Bootstrap CSS, and MySQL', image:'/placeholder-college-3.jpg', tags:['Laravel','Bootstrap','MySQL'], github:null, demo:null },
-    { id:4,  type:'courses',    title:'Survey Form',                   description:'Responsive form built with HTML & CSS', image:'/placeholder-course-1.jpg', tags:['HTML','CSS'], github:null, demo:'/survey-form' },
-    { id:5,  type:'courses',    title:'Tribute Page',                  description:'Built as part of freeCodeCamp Responsive Web Design Certificate', image:'/placeholder-course-2.jpg', tags:['HTML','CSS'], github:null, demo:'/tribute-page' },
-    { id:6,  type:'courses',    title:'Technical Documentation',       description:'Documentation page using semantic HTML & CSS', image:'/placeholder-course-3.jpg', tags:['HTML','CSS'], github:null, demo:'/technical-documentation' },
-    { id:7,  type:'courses',    title:'Product Landing Page',          description:'Landing page project from freeCodeCamp', image:'/placeholder-course-4.jpg', tags:['HTML','CSS'], github:null, demo:'/product-landing' },
-    { id:8,  type:'courses',    title:'Personal Portfolio Webpage',    description:'Portfolio built using HTML & CSS', image:'/placeholder-course-5.jpg', tags:['HTML','CSS'], github:null, demo:'/portfolio-example' },
-    { id:9,  type:'employment', title:'TLCS-INVMS',                   description:'Assisted in building an Inventory System using React, Express, and MySQL', image:'/placeholder-employment-1.jpg', tags:['React','Express','MySQL'], github:null, demo:null },
-    { id:10, type:'employment', title:'TLCS BCO Attendance',          description:'Tasked to create an Attendance System using Laravel and React', image:'/placeholder-employment-2.jpg', tags:['Laravel','React'], github:null, demo:null },
+    { id:1,  type:'college',    title:'E-commerce Website',       description:'Created using WordPress and PHP during my OJT at Linkage Web Development. I began by designing the site layout in Photoshop and gathering assets, then proceeded to code the website using a template provided by the company.', image:'/placeholder-college-1.jpg', tags:['WordPress','PHP', 'Photoshop', 'Web Design'], github:null, demo:'https://strapped.customadesign.info/' },
+    { id:2,  type:'college',    title:'Academic Management System',    description:'Serving as one of the developers on a four-person team, I helped build our 4th-Year Capstone project using the TALL stack. I then represented our team at our research colloquium, where I was awarded second-best presenter.', image:'/placeholder-college-2.jpg', tags:['Tailwind','Alpine','Laravel','Livewire','Trello'], github:'https://github.com/Judaemon/Academic-Management-System', demo:null },
+    { id:3,  type:'college',    title:'Ganduyan Taxi Tours Management',description:'Developed as a 3rd-year Software Engineering project in hopes of supporting my family’s taxi business, our four-person team created a management system. Though never deployed or actively used, I served as project manager—leveraging my understanding of taxi operations to guide development.', image:'/placeholder-college-3.jpg', tags:['Laravel','Bootstrap','MySQL'], github:null, demo:null },
+    { id:4,  type:'courses',    title:'Survey Form',                   description:'As my first project in the freeCodeCamp Responsive Web Design Certificate, I designed and developed a simple, responsive survey form.', image:'/placeholder-course-1.jpg', tags:['HTML','CSS'], github:null, demo:'https://www.freecodecamp.org/certification/mjkl21/responsive-web-design' },
+    { id:5,  type:'courses',    title:'Tribute Page',                  description:'For the second project in the freeCodeCamp Responsive Web Design Certificate, I developed a fully responsive tribute page showcasing a mock “coding journey” of my own.', image:'/placeholder-course-2.jpg', tags:['HTML','CSS'], github:null, demo:'https://www.freecodecamp.org/certification/mjkl21/responsive-web-design' },
+    { id:6,  type:'courses',    title:'Technical Documentation',       description:'As my third project in the freeCodeCamp Responsive Web Design Certificate, I built a technical documentation page that explores the history and evolution of the “Hello World” tradition.', image:'/placeholder-course-3.jpg', tags:['HTML','CSS'], github:null, demo:'https://www.freecodecamp.org/certification/mjkl21/responsive-web-design' },
+    { id:7,  type:'courses',    title:'Product Landing Page',          description:'For the fourth project in the freeCodeCamp Responsive Web Design Certificate, I created a simple and responsive product landing page that endorses a Computer Science course.', image:'/placeholder-course-4.jpg', tags:['HTML','CSS'], github:null, demo:'https://www.freecodecamp.org/certification/mjkl21/responsive-web-design' },
+    { id:8,  type:'courses',    title:'Personal Portfolio Webpage',    description:'As the fifth and final project in the freeCodeCamp Responsive Web Design Certificate, I designed a responsive personal portfolio webpage showing the sections needed in a portfolio.', image:'/placeholder-course-5.jpg', tags:['HTML','CSS'], github:null, demo:'https://www.freecodecamp.org/certification/mjkl21/responsive-web-design' },
+    { id:9,  type:'employment', title:'TLCS-INVMS',                   description:'As my first professional project, I assisted in developing a full-stack inventory management system—implementing user authentication, CRUD operations, PDF export, end-to-end database integration, and all other necessary system features. We successfully containerized and deployed the application company-wide via Docker.', image:'/placeholder-employment-1.jpg', tags:['React','Express','MySQL','Docker'], github:null, demo:null },
+    { id:10, type:'employment', title:'TLCS BCO Attendance',          description:'For my second project, I built an attendance system featuring user authentication and full CRUD functionality. I started with the Laravel starter kit integrated with React, then customized its scaffold and implemented all necessary modules to deliver a robust attendance management solution.', image:'/placeholder-employment-2.jpg', tags:['Laravel','React'], github:null, demo:null },
   ];
 
   // State
@@ -349,7 +351,7 @@ function ProjectsSection({ darkMode }) {
     <section id="projects" className={`${sectionBg} py-24 px-6 transition-colors duration-300`}>
       <div className="max-w-7xl mx-auto">
         <h2 className={`text-3xl sm:text-4xl font-bold mb-6 text-center ${headingColor}`}>
-          Projects <span role="img" aria-label="rocket">🛠️</span>
+          My Projects <span role="img" aria-label="rocket">🛠️</span>
         </h2>
 
         {/* Type Dropdown */}
@@ -447,28 +449,30 @@ function ProjectsSection({ darkMode }) {
 
 // Contact Section
 function ContactSection({ darkMode }) {
-  const sectionBg   = darkMode ? 'bg-[#0f1c2e]' : 'bg-gray-100';
-  const iconColor   = darkMode ? 'text-gray-300' : 'text-gray-700';
-  const hoverColor  = 'hover:text-[#065F89]';
-  const footerColor = darkMode ? 'text-gray-500' : 'text-gray-600';
-  const headingColor= darkMode ? 'text-[#A4AA7C]' : 'text-[#065F89]';
+  const sectionBg    = darkMode ? 'bg-[#0f1c2e]' : 'bg-gray-100';
+  const iconColor    = darkMode ? 'text-gray-300' : 'text-gray-700';
+  const hoverColor   = 'hover:text-[#065F89]';
+  const footerColor  = darkMode ? 'text-gray-500' : 'text-gray-600';
+  const headingColor = darkMode ? 'text-[#A4AA7C]' : 'text-[#065F89]';
 
   return (
     <section
       id="contact"
-      className={`${sectionBg} relative overflow-hidden py-24 px-6 transition-colors duration-300`}
+      className={`${sectionBg} relative overflow-hidden py-16 px-6 transition-colors duration-300`}
     >
-      {/* Animated blob2 background */}
+      {/* Animated Blob2 background */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="
-            w-[350px] h-[300px]
+        <div
+          className="
+            w-[1150px] h-[250px]
             bg-[#A4AA7C]/20
             animate-blob2
-          " />
+          "
+        />
       </div>
 
       {/* Foreground content */}
-      <div className="relative z-10 max-w-7xl mx-auto text-center space-y-8">
+      <div className="relative z-10 max-w-7xl mx-auto text-center space-y-6">
         <h2 className={`text-3xl font-bold ${headingColor}`}>
           Get in Touch{' '}
           <span role="img" aria-label="handshake" className="inline-block ml-2">
@@ -476,8 +480,9 @@ function ContactSection({ darkMode }) {
           </span>
         </h2>
 
-        {/* Social Icons */}
-        <div className={`flex justify-center gap-8 ${iconColor}`}>
+        {/* Contact Section Elements */}
+        <div className={`grid grid-cols-2 sm:grid-cols-4 gap-x-8 gap-y-6 ${iconColor} justify-items-center`}>
+          {/* GitHub */}
           <a
             href="https://github.com/mjklench"
             title="GitHub: mjklench"
@@ -486,12 +491,7 @@ function ContactSection({ darkMode }) {
             rel="noopener noreferrer"
             className={`flex flex-col items-center ${hoverColor} transition`}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-8 w-8 mb-1"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 mb-1" fill="currentColor" viewBox="0 0 24 24">
               <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -513,6 +513,7 @@ function ContactSection({ darkMode }) {
             <span className="text-sm">GitHub</span>
           </a>
 
+          {/* LinkedIn */}
           <a
             href="https://www.linkedin.com/in/mjklonogan21/"
             title="LinkedIn: mjklonogan21"
@@ -521,12 +522,7 @@ function ContactSection({ darkMode }) {
             rel="noopener noreferrer"
             className={`flex flex-col items-center ${hoverColor} transition`}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-8 w-8 mb-1"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 mb-1" fill="currentColor" viewBox="0 0 24 24">
               <path d="M4.98 3.5C4.98 5 3.72 6.25 2.23 6.25 0.72 6.25-.53 5-.53 3.5
                        S0.72.75 2.23.75c1.49 0 2.75 1.25 2.75
                        2.75zM.5 8.5H3.95v12H.5v-12zm8.5 0h3.44v1.65h.05
@@ -538,20 +534,16 @@ function ContactSection({ darkMode }) {
             <span className="text-sm">LinkedIn</span>
           </a>
 
+          {/* Email */}
           <a
-          href="mailto:lonogan.melglennjk@gmail.com"
-          title="Email: lonogan.melglennjk@gmail.com"
-          aria-label="Email: lonogan.melglennjk@gmail.com"
-          target="_blank"
-          rel="noopener noreferrer"
+            href="mailto:lonogan.melglennjk@gmail.com"
+            title="Email: lonogan.melglennjk@gmail.com"
+            aria-label="Email: lonogan.melglennjk@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
             className={`flex flex-col items-center ${hoverColor} transition`}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-8 w-8 mb-1"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 mb-1" fill="currentColor" viewBox="0 0 24 24">
               <path d="M2.01 4.27C2.01 2.88 3.02 1.75 4.4
                        1.75h15.2c1.38 0 2.39 1.13 2.39 
                        2.52v14.96c0 1.38-1.01 2.52-2.39
@@ -561,10 +553,30 @@ function ContactSection({ darkMode }) {
                        6.12c.19.15.44.15.63 0L20 
                        6.38v12.18l-16-.01V6.61z" />
             </svg>
-            <span className="text-sm">Email</span>
+            <span className="text-sm">lonogan.melglennjk@gmail.com</span>
+          </a>
+
+          {/* Location */}
+          <a
+            href="https://maps.app.goo.gl/4wZgRmTYk2uDCXyQ7"
+            title="Baguio, Philippines"
+            aria-label="Baguio, Philippines"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`flex flex-col items-center ${hoverColor} transition`}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 mb-1" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M12 2C8.134 2 5 5.134 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.866-3.134-7-7-7zm0 9.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"
+              />
+            </svg>
+            <span className="text-sm">Baguio, Philippines</span>
           </a>
         </div>
 
+        {/* Copyright */}
         <p className={`${footerColor} text-xs`}>
           &copy; {new Date().getFullYear()} Melglenn James Kiley Lonogan. All rights reserved.
         </p>

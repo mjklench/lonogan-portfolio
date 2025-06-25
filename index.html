@@ -23,15 +23,34 @@
       }
 
       @keyframes blob2 {
-        0%   { border-radius: 30% 50% 70% 50%; }
-        25%  { border-radius: 60% 30% 50% 60%; }
-        50%  { border-radius: 50% 70% 30% 40%; }
-        75%  { border-radius: 40% 60% 50% 30%; }
-        100% { border-radius: 30% 50% 70% 50%; }
+        0% {
+          border-radius: 30% 50% 70% 50%;
+          transform: scale(1) rotate(0deg);
+        }
+        20% {
+          border-radius: 60% 20% 80% 40%;
+          transform: scale(1.1) rotate(5deg);
+        }
+        40% {
+          border-radius: 50% 80% 30% 60%;
+          transform: scale(0.9) rotate(-4deg);
+        }
+        60% {
+          border-radius: 70% 40% 60% 30%;
+          transform: scale(1.05) rotate(4deg);
+        }
+        80% {
+          border-radius: 40% 60% 50% 20%;
+          transform: scale(0.95) rotate(-3deg);
+        }
+        100% {
+          border-radius: 30% 50% 70% 50%;
+          transform: scale(1) rotate(0deg);
+        }
       }
-      
+
       .animate-blob2 {
-        animation: blob2 10s ease-in-out infinite;
+        animation: blob2 12s ease-in-out infinite;
       }
     </style>
 
