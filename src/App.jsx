@@ -269,7 +269,7 @@ function ProjectsSection({ darkMode }) {
   const types = [
     { label: 'All',       value: 'all' },
     { label: 'College',   value: 'college' },
-    { label: 'Courses',   value: 'courses' },
+    { label: 'Online Courses',   value: 'courses' },
     { label: 'Employment',value: 'employment' },
   ];
 
@@ -287,16 +287,106 @@ function ProjectsSection({ darkMode }) {
 
   // Project Data
   const projects = [
-    { id:1,  type:'college',    title:'E-commerce Website',       description:'Created using WordPress and PHP during my OJT at Linkage Web Development. I began by designing the site layout in Photoshop and gathering assets, then proceeded to code the website using a template provided by the company.', image:'/placeholder-college-1.jpg', tags:['WordPress','PHP', 'Photoshop', 'Web Design'], github:null, demo:'https://strapped.customadesign.info/' },
-    { id:2,  type:'college',    title:'Academic Management System',    description:'Serving as one of the developers on a four-person team, I helped build our 4th-Year Capstone project using the TALL stack. I then represented our team at our research colloquium, where I was awarded second-best presenter.', image:'/placeholder-college-2.jpg', tags:['Tailwind','Alpine','Laravel','Livewire','Trello'], github:'https://github.com/Judaemon/Academic-Management-System', demo:null },
-    { id:3,  type:'college',    title:'Ganduyan Taxi Tours Management',description:'Developed as a 3rd-year Software Engineering project in hopes of supporting my family’s taxi business, our four-person team created a management system. Though never deployed or actively used, I served as project manager—leveraging my understanding of taxi operations to guide development.', image:'/placeholder-college-3.jpg', tags:['Laravel','Bootstrap','MySQL'], github:null, demo:null },
-    { id:4,  type:'courses',    title:'Survey Form',                   description:'As my first project in the freeCodeCamp Responsive Web Design Certificate, I designed and developed a simple, responsive survey form.', image:'/placeholder-course-1.jpg', tags:['HTML','CSS'], github:null, demo:'https://www.freecodecamp.org/certification/mjkl21/responsive-web-design' },
-    { id:5,  type:'courses',    title:'Tribute Page',                  description:'For the second project in the freeCodeCamp Responsive Web Design Certificate, I developed a fully responsive tribute page showcasing a mock “coding journey” of my own.', image:'/placeholder-course-2.jpg', tags:['HTML','CSS'], github:null, demo:'https://www.freecodecamp.org/certification/mjkl21/responsive-web-design' },
-    { id:6,  type:'courses',    title:'Technical Documentation',       description:'As my third project in the freeCodeCamp Responsive Web Design Certificate, I built a technical documentation page that explores the history and evolution of the “Hello World” tradition.', image:'/placeholder-course-3.jpg', tags:['HTML','CSS'], github:null, demo:'https://www.freecodecamp.org/certification/mjkl21/responsive-web-design' },
-    { id:7,  type:'courses',    title:'Product Landing Page',          description:'For the fourth project in the freeCodeCamp Responsive Web Design Certificate, I created a simple and responsive product landing page that endorses a Computer Science course.', image:'/placeholder-course-4.jpg', tags:['HTML','CSS'], github:null, demo:'https://www.freecodecamp.org/certification/mjkl21/responsive-web-design' },
-    { id:8,  type:'courses',    title:'Personal Portfolio Webpage',    description:'As the fifth and final project in the freeCodeCamp Responsive Web Design Certificate, I designed a responsive personal portfolio webpage showing the sections needed in a portfolio.', image:'/placeholder-course-5.jpg', tags:['HTML','CSS'], github:null, demo:'https://www.freecodecamp.org/certification/mjkl21/responsive-web-design' },
-    { id:9,  type:'employment', title:'TLCS-INVMS',                   description:'As my first professional project, I assisted in developing a full-stack inventory management system—implementing user authentication, CRUD operations, PDF export, end-to-end database integration, and all other necessary system features. We successfully containerized and deployed the application company-wide via Docker.', image:'/placeholder-employment-1.jpg', tags:['React','Express','MySQL','Docker'], github:null, demo:null },
-    { id:10, type:'employment', title:'TLCS BCO Attendance',          description:'For my second project, I built an attendance system featuring user authentication and full CRUD functionality. I started with the Laravel starter kit integrated with React, then customized its scaffold and implemented all necessary modules to deliver a robust attendance management solution.', image:'/placeholder-employment-2.jpg', tags:['Laravel','React'], github:null, demo:null },
+    {
+      id: 1,
+      type: 'college',
+      title: 'E-commerce Website',
+      description: 'Created using WordPress and PHP during my OJT at Linkage Web Development. I began by designing the site layout in Photoshop and gathering assets, then proceeded to code the website using a template provided by the company.',
+      image: '/strapped-ecommerce.png',
+      tags: ['WordPress','PHP','Photoshop','Web Design'],
+      github: null,
+      demo: 'https://strapped.customadesign.info/'
+    },
+    {
+      id: 2,
+      type: 'college',
+      title: 'Academic Management System',
+      description: 'Serving as one of the developers on a four-person team, I helped build our 4th-Year Capstone project using the TALL stack. I then represented our team at our research colloquium, where I was awarded second-best presenter.',
+      image: '/academic-management-system.png',
+      tags: ['Tailwind','Alpine','Laravel','Livewire','Trello'],
+      github: 'https://github.com/Judaemon/Academic-Management-System',
+      demo: null
+    },
+    {
+      id: 3,
+      type: 'college',
+      title: 'Ganduyan Taxi Tours Management',
+      description: 'Developed as a 3rd-year Software Engineering project in hopes of supporting my family’s taxi business, our four-person team created a management system. Though never deployed or actively used, I served as project manager—leveraging my understanding of taxi operations to guide development.',
+      image: '/ganduyan-taxi-management-system.png',
+      tags: ['Laravel','Bootstrap','MySQL'],
+      github: null,
+      demo: null
+    },
+    {
+      id: 4,
+      type: 'courses',
+      title: 'Survey Form',
+      description: 'As my first project in the freeCodeCamp Responsive Web Design Certificate, I designed and developed a simple, responsive survey form.',
+      image: '/survey-form.png',
+      tags: ['HTML','CSS'],
+      github: null,
+      demo: 'https://www.freecodecamp.org/certification/mjkl21/responsive-web-design'
+    },
+    {
+      id: 5,
+      type: 'courses',
+      title: 'Tribute Page',
+      description: 'For the second project in the freeCodeCamp Responsive Web Design Certificate, I developed a fully responsive tribute page showcasing a mock “coding journey” of my own.',
+      image: '/tribute-page.png',
+      tags: ['HTML','CSS'],
+      github: null,
+      demo: 'https://www.freecodecamp.org/certification/mjkl21/responsive-web-design'
+    },
+    {
+      id: 6,
+      type: 'courses',
+      title: 'Technical Documentation',
+      description: 'As my third project in the freeCodeCamp Responsive Web Design Certificate, I built a technical documentation page that explores the history and evolution of the “Hello World” tradition.',
+      image: '/technical-documentation.png',
+      tags: ['HTML','CSS'],
+      github: null,
+      demo: 'https://www.freecodecamp.org/certification/mjkl21/responsive-web-design'
+    },
+    {
+      id: 7,
+      type: 'courses',
+      title: 'Product Landing Page',
+      description: 'For the fourth project in the freeCodeCamp Responsive Web Design Certificate, I created a simple and responsive product landing page that endorses a Computer Science course.',
+      image: '/product-landing-page.png',
+      tags: ['HTML','CSS'],
+      github: null,
+      demo: 'https://www.freecodecamp.org/certification/mjkl21/responsive-web-design'
+    },
+    {
+      id: 8,
+      type: 'courses',
+      title: 'Personal Portfolio Webpage',
+      description: 'As the fifth and final project in the freeCodeCamp Responsive Web Design Certificate, I designed a responsive personal portfolio webpage showing the sections needed in a portfolio.',
+      image: '/personal-portfolio-webpage.png',
+      tags: ['HTML','CSS'],
+      github: null,
+      demo: 'https://www.freecodecamp.org/certification/mjkl21/responsive-web-design'
+    },
+    {
+      id: 9,
+      type: 'employment',
+      title: 'TLCS-INVMS',
+      description: 'As my first professional project, I assisted in developing a full-stack inventory management system—implementing user authentication, CRUD operations, PDF export, end-to-end database integration, and all other necessary system features. We successfully containerized and deployed the application company-wide via Docker.',
+      image: '/tlcs-invms.png',
+      tags: ['React','Express','MySQL','Docker'],
+      github: null,
+      demo: null
+    },
+    {
+      id: 10,
+      type: 'employment',
+      title: 'TLCS BCO Attendance',
+      description: 'For my second project, I built an attendance system featuring user authentication and full CRUD functionality. I started with the Laravel starter kit integrated with React, then customized its scaffold and implemented all necessary modules to deliver a robust attendance management solution.',
+      image: '/tlcs-bco-attendance.png',
+      tags: ['Laravel','React'],
+      github: null,
+      demo: null
+    },
   ];
 
   // State
@@ -345,6 +435,21 @@ function ProjectsSection({ darkMode }) {
     setCurrentPage(1);
     setSelectedTechs([]);
     setSelectedType('all');
+  };
+
+  const [modalSrc, setModalSrc] = useState(null);
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  const openModal = (src) => {
+    setModalSrc(src);
+    setTimeout(() => setIsAnimating(true), 10);
+  };
+
+  const closeModal = () => {
+    setIsAnimating(false);
+    setTimeout(() => {
+      setModalSrc(null);
+    }, 200);
   };
 
   return (
@@ -398,7 +503,11 @@ function ProjectsSection({ darkMode }) {
         {/* Project Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {paginated.map(p => (
-            <div key={p.id} className={`${cardBg} rounded-lg overflow-hidden shadow-lg`}>
+            <div
+              key={p.id}
+              className={`${cardBg} rounded-lg overflow-hidden shadow-lg cursor-pointer`}
+              onClick={() => openModal(p.image)}
+            >
               <img src={p.image} alt={p.title} className="w-full h-40 object-cover" loading="lazy" />
               <div className="p-4">
                 <h3 className="text-xl font-semibold mb-2">{p.title}</h3>
@@ -410,7 +519,12 @@ function ProjectsSection({ darkMode }) {
                 </div>
                 <div className="flex items-center gap-4 text-sm">
                   {p.github && (
-                    <a href={p.github} target="_blank" rel="noopener noreferrer" className={`flex items-center ${linkOff}`}>
+                    <a
+                      href={p.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`flex items-center ${linkOff}`}
+                    >
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" fill="currentColor" viewBox="0 0 24 24">
                         <path fillRule="evenodd" clipRule="evenodd" d="M12 0C5.371 0 0 5.371 0 12c0 5.303 3.438 9.8 8.205 11.387.6.113.82-.26.82-.577 0-.285-.011-1.041-.017-2.044-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.729.083-.729 1.205.084 1.84 1.237 1.84 1.237 1.07 1.835 2.809 1.305 3.495.997.108-.774.418-1.305.76-1.605-2.665-.303-5.466-1.333-5.466-5.932 0-1.31.468-2.381 1.235-3.221-.124-.303-.536-1.523.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.289-1.553 3.295-1.23 3.295-1.23.656 1.653.244 2.873.12 3.176.77.84 1.232 1.911 1.232 3.221 0 4.61-2.807 5.625-5.48 5.921.43.372.823 1.102.823 2.222 0 1.606-.015 2.901-.015 3.293 0 .319.216.694.825.576C20.565 21.796 24 17.298 24 12 24 5.371 18.627 0 12 0Z" />
                       </svg>
@@ -440,6 +554,43 @@ function ProjectsSection({ darkMode }) {
                 {n}
               </button>
             ))}
+          </div>
+        )}
+
+        {/* Image Modal */}
+        {modalSrc && (
+          <div
+            className={`
+              fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4
+              transition-opacity duration-200 ease-out
+              ${isAnimating ? 'opacity-100' : 'opacity-0'}
+            `}
+            onClick={closeModal}
+          >
+            <div
+              className={`
+                relative max-w-full max-h-full overflow-auto
+                transition-transform duration-200 ease-out
+                ${isAnimating ? 'scale-100' : 'scale-95'}
+              `}
+              onClick={e => e.stopPropagation()}
+            >
+              <img
+                src={modalSrc}
+                alt="Project Screenshot"
+                className="block max-w-full max-h-full"
+              />
+              <button
+                className="absolute top-2 right-2 p-1 bg-black bg-opacity-50 rounded-full hover:bg-opacity-75 transition"
+                onClick={closeModal}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none"
+                    viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                        d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
           </div>
         )}
       </div>
