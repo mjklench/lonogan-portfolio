@@ -11,17 +11,18 @@
         scroll-behavior: smooth;
       }
       
+      /* Blob 1 */
       @keyframes blob {
         0%   { border-radius: 44% 62% 32% 30%; }
         33%  { border-radius: 52% 42% 55% 45%; }
         66%  { border-radius: 32% 66% 42% 62%; }
         100% { border-radius: 44% 62% 32% 30%; }
       }
-
       .animate-blob {
         animation: blob 8s ease-in-out infinite;
       }
 
+      /* Blob 2 */
       @keyframes blob2 {
         0% {
           border-radius: 30% 50% 70% 50%;
@@ -48,9 +49,47 @@
           transform: scale(1) rotate(0deg);
         }
       }
-
       .animate-blob2 {
-        animation: blob2 12s ease-in-out infinite;
+        animation: blob2 16s ease-in-out infinite;
+      }
+
+      /* Blob 3 */
+      @keyframes blob3 {
+        0% {
+          border-radius: 50% 30% 60% 40%;
+          transform: scale(1) rotate(0deg);
+        }
+        25% {
+          border-radius: 60% 40% 40% 60%;
+          transform: scale(1.05) rotate(3deg);
+        }
+        50% {
+          border-radius: 30% 60% 50% 70%;
+          transform: scale(0.95) rotate(-2deg);
+        }
+        75% {
+          border-radius: 70% 50% 30% 50%;
+          transform: scale(1.1) rotate(2deg);
+        }
+        100% {
+          border-radius: 50% 30% 60% 40%;
+          transform: scale(1) rotate(0deg);
+        }
+      }
+      .animate-blob3 {
+        animation: blob3 20s ease-in-out infinite;
+      }
+
+      /* Glow Border for Project Cards */
+      @keyframes border-glow-rotate {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      .glow-border {
+        background: linear-gradient(120deg, #065F89, #A4AA7C, #065F89);
+        background-size: 300% 300%;
+        animation: border-glow-rotate 5s linear infinite;
       }
     </style>
 

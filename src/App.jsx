@@ -242,9 +242,14 @@ function About({ darkMode }) {
   return (
     <section
       id="about"
-      className={`${bg} py-24 px-6 text-center transition-colors duration-300`}
+      className={`${bg} relative overflow-hidden py-24 px-6 text-center transition-colors duration-300`}
     >
-      <div className="max-w-3xl mx-auto">
+      {/* Animated Blob3 Background */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+        <div className="w-[950px] h-[350px] bg-[#065F89]/10 animate-blob3"></div>
+      </div>
+
+      <div className="relative z-10 max-w-3xl mx-auto">
         <h2 className={`text-3xl sm:text-4xl font-bold mb-6 ${highlight}`}>
           About Me{' '}
           <span role="img" aria-label="technologist" className="inline-block ml-2">
@@ -263,6 +268,7 @@ function About({ darkMode }) {
   );
 }
 
+
 // Projects Section
 function ProjectsSection({ darkMode }) {
   // Types of Projects
@@ -278,37 +284,57 @@ function ProjectsSection({ darkMode }) {
     // Styling/CSS frameworks
     ['HTML','CSS','Tailwind','Bootstrap','Alpine'],
     // JavaScript ecosystem
-    ['JavaScript','React','Express'],
+    ['JavaScript','React','Express','TypeScript'],
     // Back-end & CMS
     ['WordPress','PHP','Laravel','Livewire','MySQL'],
     // Other Skills
-    ['Photoshop','Web Design','Trello','Docker']
+    ['Photoshop','Web Design','Trello','Docker','WooCommerce']
   ];
 
   // Project Data
   const projects = [
     {
       id: 1,
-      type: 'college',
-      title: 'E-commerce Website',
-      description: 'Created using WordPress and PHP during my OJT at Linkage Web Development. I began by designing the site layout in Photoshop and gathering assets, then proceeded to code the website using a template provided by the company.',
-      image: '/strapped-ecommerce.png',
-      tags: ['WordPress','PHP','Photoshop','Web Design'],
+      type: 'employment',
+      title: 'TLCS-INVMS',
+      description: 'As my first professional project, I assisted in developing a full-stack inventory management system—implementing user authentication, CRUD operations, PDF export, end-to-end database integration, and all other necessary system features. We successfully containerized and deployed the application company-wide via Docker.',
+      image: '/tlcs-invms.png',
+      tags: ['React','Express','Tailwind','MySQL','Docker'],
       github: null,
-      demo: 'https://strapped.customadesign.info/'
+      demo: null
     },
     {
       id: 2,
-      type: 'college',
-      title: 'Academic Management System',
-      description: 'Serving as one of the developers on a four-person team, I helped build our 4th-Year Capstone project using the TALL stack. I then represented our team at our research colloquium, where I was awarded second-best presenter.',
-      image: '/academic-management-system.png',
-      tags: ['Tailwind','Alpine','Laravel','Livewire','Trello'],
-      github: 'https://github.com/Judaemon/Academic-Management-System',
+      type: 'employment',
+      title: 'TLCS BCO Attendance',
+      description: 'For my second project, I built an attendance system featuring user authentication and full CRUD functionality. I started with the Laravel starter kit integrated with React, then customized its scaffold and implemented all necessary modules to deliver a robust attendance management solution.',
+      image: '/tlcs-bco-attendance.png',
+      tags: ['Laravel','React','TypeScript','Tailwind','MySQL'],
+      github: null,
       demo: null
     },
     {
       id: 3,
+      type: 'college',
+      title: 'E-commerce Website',
+      description: 'Created using WordPress and PHP during my OJT at Linkage Web Development. I began by designing the site layout in Photoshop and gathering assets, then proceeded to code the website using a template provided by the company.',
+      image: '/strapped-ecommerce.png',
+      tags: ['WordPress','PHP','Photoshop','Web Design','WooCommerce'],
+      github: null,
+      demo: 'https://strapped.customadesign.info/'
+    },
+    {
+      id: 4,
+      type: 'college',
+      title: 'Academic Management System',
+      description: 'Serving as one of the developers on a four-person team, I helped build our 4th-Year Capstone project using the TALL stack. I then represented our team at our research colloquium, where I was awarded second-best presenter.',
+      image: '/academic-management-system.png',
+      tags: ['Tailwind','Alpine','Laravel','Livewire','MySQL','Trello'],
+      github: 'https://github.com/Judaemon/Academic-Management-System',
+      demo: null
+    },
+    {
+      id: 5,
       type: 'college',
       title: 'Ganduyan Taxi Tours Management',
       description: 'Developed as a 3rd-year Software Engineering project in hopes of supporting my family’s taxi business, our four-person team created a management system. Though never deployed or actively used, I served as project manager—leveraging my understanding of taxi operations to guide development.',
@@ -318,7 +344,7 @@ function ProjectsSection({ darkMode }) {
       demo: null
     },
     {
-      id: 4,
+      id: 6,
       type: 'courses',
       title: 'Survey Form',
       description: 'As my first project in the freeCodeCamp Responsive Web Design Certificate, I designed and developed a simple, responsive survey form.',
@@ -328,7 +354,7 @@ function ProjectsSection({ darkMode }) {
       demo: 'https://www.freecodecamp.org/certification/mjkl21/responsive-web-design'
     },
     {
-      id: 5,
+      id: 7,
       type: 'courses',
       title: 'Tribute Page',
       description: 'For the second project in the freeCodeCamp Responsive Web Design Certificate, I developed a fully responsive tribute page showcasing a mock “coding journey” of my own.',
@@ -338,7 +364,7 @@ function ProjectsSection({ darkMode }) {
       demo: 'https://www.freecodecamp.org/certification/mjkl21/responsive-web-design'
     },
     {
-      id: 6,
+      id: 8,
       type: 'courses',
       title: 'Technical Documentation',
       description: 'As my third project in the freeCodeCamp Responsive Web Design Certificate, I built a technical documentation page that explores the history and evolution of the “Hello World” tradition.',
@@ -348,7 +374,7 @@ function ProjectsSection({ darkMode }) {
       demo: 'https://www.freecodecamp.org/certification/mjkl21/responsive-web-design'
     },
     {
-      id: 7,
+      id: 9,
       type: 'courses',
       title: 'Product Landing Page',
       description: 'For the fourth project in the freeCodeCamp Responsive Web Design Certificate, I created a simple and responsive product landing page that endorses a Computer Science course.',
@@ -358,7 +384,7 @@ function ProjectsSection({ darkMode }) {
       demo: 'https://www.freecodecamp.org/certification/mjkl21/responsive-web-design'
     },
     {
-      id: 8,
+      id: 10,
       type: 'courses',
       title: 'Personal Portfolio Webpage',
       description: 'As the fifth and final project in the freeCodeCamp Responsive Web Design Certificate, I designed a responsive personal portfolio webpage showing the sections needed in a portfolio.',
@@ -366,26 +392,6 @@ function ProjectsSection({ darkMode }) {
       tags: ['HTML','CSS'],
       github: null,
       demo: 'https://www.freecodecamp.org/certification/mjkl21/responsive-web-design'
-    },
-    {
-      id: 9,
-      type: 'employment',
-      title: 'TLCS-INVMS',
-      description: 'As my first professional project, I assisted in developing a full-stack inventory management system—implementing user authentication, CRUD operations, PDF export, end-to-end database integration, and all other necessary system features. We successfully containerized and deployed the application company-wide via Docker.',
-      image: '/tlcs-invms.png',
-      tags: ['React','Express','MySQL','Docker'],
-      github: null,
-      demo: null
-    },
-    {
-      id: 10,
-      type: 'employment',
-      title: 'TLCS BCO Attendance',
-      description: 'For my second project, I built an attendance system featuring user authentication and full CRUD functionality. I started with the Laravel starter kit integrated with React, then customized its scaffold and implemented all necessary modules to deliver a robust attendance management solution.',
-      image: '/tlcs-bco-attendance.png',
-      tags: ['Laravel','React'],
-      github: null,
-      demo: null
     },
   ];
 
@@ -505,37 +511,81 @@ function ProjectsSection({ darkMode }) {
           {paginated.map(p => (
             <div
               key={p.id}
-              className={`${cardBg} rounded-lg overflow-hidden shadow-lg cursor-pointer`}
-              onClick={() => openModal(p.image)}
+              className="relative rounded-xl p-[4px] glow-border transition-transform duration-300 hover:-translate-y-1"
+              style={{ minHeight: '460px' }}
             >
-              <img src={p.image} alt={p.title} className="w-full h-40 object-cover" loading="lazy" />
-              <div className="p-4">
-                <h3 className="text-xl font-semibold mb-2">{p.title}</h3>
-                <p className={`${descColor} text-sm mb-3`}>{p.description}</p>
-                <div className="flex flex-wrap gap-2 mb-3">
-                  {p.tags.map(tag => (
-                    <span key={tag} className={`px-2 py-1 ${tagBg} text-xs rounded-full`}>{tag}</span>
-                  ))}
-                </div>
-                <div className="flex items-center gap-4 text-sm">
-                  {p.github && (
-                    <a
-                      href={p.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`flex items-center ${linkOff}`}
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" fill="currentColor" viewBox="0 0 24 24">
-                        <path fillRule="evenodd" clipRule="evenodd" d="M12 0C5.371 0 0 5.371 0 12c0 5.303 3.438 9.8 8.205 11.387.6.113.82-.26.82-.577 0-.285-.011-1.041-.017-2.044-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.729.083-.729 1.205.084 1.84 1.237 1.84 1.237 1.07 1.835 2.809 1.305 3.495.997.108-.774.418-1.305.76-1.605-2.665-.303-5.466-1.333-5.466-5.932 0-1.31.468-2.381 1.235-3.221-.124-.303-.536-1.523.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.289-1.553 3.295-1.23 3.295-1.23.656 1.653.244 2.873.12 3.176.77.84 1.232 1.911 1.232 3.221 0 4.61-2.807 5.625-5.48 5.921.43.372.823 1.102.823 2.222 0 1.606-.015 2.901-.015 3.293 0 .319.216.694.825.576C20.565 21.796 24 17.298 24 12 24 5.371 18.627 0 12 0Z" />
-                      </svg>
-                      GitHub
-                    </a>
-                  )}
-                  {p.demo && (
-                    <a href={p.demo} target="_blank" rel="noopener noreferrer" className="text-[#065F89] hover:underline">
-                      Live Demo
-                    </a>
-                  )}
+              <div
+                className={`${cardBg} h-full flex flex-col rounded-lg overflow-hidden cursor-pointer`}
+                onClick={() => openModal(p.image)}
+              >
+                {/* Image */}
+                <img src={p.image} alt={p.title} className="w-full h-40 object-cover" loading="lazy" />
+
+                {/* Content */}
+                <div className="flex flex-col justify-between flex-grow p-4">
+                  <div>
+                    <h3 className="text-xl font-semibold mb-2">{p.title}</h3>
+                    <p className={`${descColor} text-sm mb-3`}>{p.description}</p>
+                  </div>
+
+                  <div className="mt-auto">
+                    <div className="flex flex-wrap gap-2 mb-3">
+                      {p.tags.map(tag => (
+                        <span key={tag} className={`px-2 py-1 ${tagBg} text-xs rounded-full`}>{tag}</span>
+                      ))}
+                    </div>
+                    <div className="flex items-center gap-4 text-sm">
+                      {p.github && (
+                        <a
+                          href={p.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`flex items-center ${linkOff}`}
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-5 w-5 mr-1"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              clipRule="evenodd"
+                              d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58
+                              0-.29-.01-1.04-.02-2.04-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73
+                              1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.31 3.49.99.11-.77.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93
+                              0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23.96-.27 1.98-.4 3-.4s2.04.13 3
+                              .4c2.29-1.55 3.29-1.23 3.29-1.23.66 1.65.25 2.87.12 3.17.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.62-5.49
+                              5.92.43.37.82 1.1.82 2.22 0 1.6-.01 2.9-.01 3.29 0 .32.22.7.83.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"
+                            />
+                          </svg>
+                          GitHub
+                        </a>
+                      )}
+                      {p.demo && (
+                        <a
+                          href={p.demo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className={`flex items-center ${linkOff}`}
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-5 w-5 mr-1"
+                            fill="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42L17.59 5H14V3z" />
+                            <path d="M5 5h7V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 
+                                    2-2v-7h-2v7H5V5z" />
+                          </svg>
+                          Live Demo
+                        </a>
+                      )}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
