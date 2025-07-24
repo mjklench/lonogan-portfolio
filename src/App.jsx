@@ -185,18 +185,17 @@ function Hello({ darkMode }) {
     >
       <div className="max-w-3xl mx-auto text-center px-6 pt-24 pb-16 space-y-6">
         {/* Animated Blob Photo */}
-        <div className="w-[350px] h-[300px] mx-auto">
-          <img
-            src="/mjkl-picture-2023.png"
-            alt="Melglenn James"
-            className="
-              w-full h-full object-cover
-              rounded-[44%_62%_32%_30%]
-              border-4 border-[#065F89]
-              shadow-lg
-              animate-blob
-            "
-          />
+        <div className="w-[350px] h-[300px] mx-auto relative">
+          <div className="absolute inset-0 bg-gradient-to-r from-[#065F89] to-[#A4AA7C] p-[4px] shadow-lg animate-blob" style={{ borderRadius: '44% 62% 32% 30%' }}>
+            <div className="w-full h-full bg-[#0f172a] overflow-hidden" style={{ borderRadius: 'inherit' }}>
+              <img
+                src="/mjkl-picture-2023.png"
+                alt="Melglenn James"
+                className="w-full h-full object-cover"
+                style={{ borderRadius: 'inherit' }}
+              />
+            </div>
+          </div>
         </div>
 
         {/* Main Title */}
@@ -329,7 +328,7 @@ function ProjectsSection({ darkMode }) {
       title: 'Academic Management System',
       description: 'Serving as one of the developers on a four-person team, I helped build our 4th-Year Capstone project using the TALL stack. I then represented our team at our research colloquium, where I was awarded second-best presenter.',
       image: '/academic-management-system.png',
-      tags: ['Tailwind','Alpine','Laravel','Livewire','MySQL','Trello'],
+      tags: ['Tailwind','Alpine','Laravel','Livewire','MySQL','Trello','PHP'],
       github: 'https://github.com/Judaemon/Academic-Management-System',
       demo: null
     },
@@ -339,7 +338,7 @@ function ProjectsSection({ darkMode }) {
       title: 'Ganduyan Taxi Tours Management',
       description: 'Developed as a 3rd-year Software Engineering project in hopes of supporting my family’s taxi business, our four-person team created a management system. Though never deployed or actively used, I served as project manager—leveraging my understanding of taxi operations to guide development.',
       image: '/ganduyan-taxi-management-system.png',
-      tags: ['Laravel','Bootstrap','MySQL'],
+      tags: ['Laravel','Bootstrap','MySQL','PHP'],
       github: null,
       demo: null
     },
@@ -511,7 +510,7 @@ function ProjectsSection({ darkMode }) {
           {paginated.map(p => (
             <div
               key={p.id}
-              className="relative rounded-xl p-[4px] glow-border transition-transform duration-300 hover:-translate-y-1"
+              className="relative rounded-xl p-[3px] glow-border transition-transform duration-300 hover:-translate-y-2"
               style={{ minHeight: '460px' }}
             >
               <div
