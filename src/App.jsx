@@ -208,17 +208,41 @@ function Hello({ darkMode }) {
 
         {/* Subtitle */}
         <h2
-          className={`
-            text-2xl sm:text-3xl font-semibold
-            ${bgColor}
-          `}
+          className={`relative inline-block text-2xl sm:text-3xl font-semibold ${bgColor}`}
         >
-          Full-Stack Developer
+          <span className="relative inline-block">
+            Full-Stack Developer
+
+            {/* Full-width hand-drawn underline */}
+            <svg
+              className="sketch-underline absolute left-0 right-0 mx-auto bottom-[-10px] w-full h-[20px] pointer-events-none"
+              viewBox="0 0 400 40"
+              fill="none"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+            >
+              <defs>
+                <linearGradient id="underlineGrad" x1="0" y1="0" x2="400" y2="0" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%"  stopColor="#065F89"/>
+                  <stop offset="100%" stopColor="#A4AA7C"/>
+                </linearGradient>
+              </defs>
+              {/* Longer wavy path spanning entire width */}
+              <path
+                d="M5 25 C 80 45, 320 5, 395 25"
+                stroke="url(#underlineGrad)"
+                strokeWidth="6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                pathLength="100"
+              />
+            </svg>
+          </span>
         </h2>
 
-        {/* Broad Descriptor */}
+        {/* Short Description */}
         <p className={`${subtitleColor} text-lg max-w-lg mx-auto`}>
-          Building end-to-end solutions—from intuitive interfaces to backend services and data persistence—ensuring seamless experiences across platforms.
+          Building end-to-end solutions, from intuitive interfaces to backend services and data persistence, ensuring seamless experiences across platforms.
         </p>
 
         <a
@@ -260,7 +284,7 @@ function About({ darkMode }) {
           <span className={highlight}>University of Baguio</span> (Class of 2024). Currently, I serve as an{' '}
           <span className={highlight}>IT Support Specialist</span> and designated <span className={highlight}>Programmer</span> at{' '}
           <span className={highlight}>Treasure Link Cooperative Society</span>. In this role, I deliver hands-on <span className={highlight}>technical support</span> and actively{' '}
-          <span className={highlight}>build full-stack solutions</span>—crafting intuitive user interfaces and developing robust back-end services and databases. Eager to embrace new challenges, I’m committed to ongoing growth—continually expanding my knowledge and sharpening my skills.
+          <span className={highlight}>build full-stack solutions</span>, crafting intuitive user interfaces and developing robust back-end services and databases. Eager to embrace new challenges, I’m committed to ongoing growth, continually expanding my knowledge and sharpening my skills.
         </p>
       </div>
     </section>
@@ -296,7 +320,7 @@ function ProjectsSection({ darkMode }) {
       id: 1,
       type: 'employment',
       title: 'TLCS-INVMS',
-      description: 'As my first professional project, I assisted in developing a full-stack inventory management system—implementing user authentication, CRUD operations, PDF export, end-to-end database integration, and all other necessary system features. We successfully containerized and deployed the application company-wide via Docker.',
+      description: 'As my first professional project, I assisted in developing a full-stack inventory management system, implementing user authentication, CRUD operations, PDF export, end-to-end database integration, and all other necessary system features. We successfully containerized and deployed the application company-wide via Docker.',
       image: '/tlcs-invms.png',
       tags: ['React','Express','Tailwind','MySQL','Docker'],
       github: null,
@@ -308,7 +332,7 @@ function ProjectsSection({ darkMode }) {
       title: 'TLCS BCO Attendance',
       description: 'For my second project, I built an attendance system featuring user authentication and full CRUD functionality. I started with the Laravel starter kit integrated with React, then customized its scaffold and implemented all necessary modules to deliver a robust attendance management solution.',
       image: '/tlcs-bco-attendance.png',
-      tags: ['Laravel','React','TypeScript','Tailwind','MySQL'],
+      tags: ['Laravel','React','TypeScript','Tailwind','MySQL','Docker'],
       github: null,
       demo: null
     },
@@ -318,7 +342,7 @@ function ProjectsSection({ darkMode }) {
       title: 'E-commerce Website',
       description: 'Created using WordPress and PHP during my OJT at Linkage Web Development. I began by designing the site layout in Photoshop and gathering assets, then proceeded to code the website using a template provided by the company.',
       image: '/strapped-ecommerce.png',
-      tags: ['WordPress','PHP','Photoshop','Web Design','WooCommerce'],
+      tags: ['WordPress','PHP','Photoshop','Web Design','WooCommerce','CSS'],
       github: null,
       demo: 'https://strapped.customadesign.info/'
     },
@@ -336,7 +360,7 @@ function ProjectsSection({ darkMode }) {
       id: 5,
       type: 'college',
       title: 'Ganduyan Taxi Tours Management',
-      description: 'Developed as a 3rd-year Software Engineering project in hopes of supporting my family’s taxi business, our four-person team created a management system. Though never deployed or actively used, I served as project manager—leveraging my understanding of taxi operations to guide development.',
+      description: 'Developed as a 3rd-year Software Engineering project in hopes of supporting my family’s taxi business, our four-person team created a management system. Though never deployed or actively used, I served as project manager, leveraging my understanding of taxi operations to guide development.',
       image: '/ganduyan-taxi-management-system.png',
       tags: ['Laravel','Bootstrap','MySQL','PHP'],
       github: null,

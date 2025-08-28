@@ -91,6 +91,20 @@
         background-size: 300% 300%;
         animation: border-glow-rotate 4s linear infinite;
       }
+
+      /* Hand-drawn underline animation for Subtitle */
+      @keyframes sketch-draw {
+        0%   { stroke-dashoffset: 100; }
+        60%  { stroke-dashoffset: 0; }
+        85%  { stroke-dashoffset: 0; }
+        100% { stroke-dashoffset: 100; }
+      }
+      .sketch-underline path {
+        stroke-dasharray: 100;
+        stroke-dashoffset: 100;
+        animation: sketch-draw 3.2s ease-in-out infinite;
+        filter: drop-shadow(0 1px 0 rgba(0,0,0,.25));
+      }
     </style>
 
     <title>&lt;mel-dev&gt;</title>
